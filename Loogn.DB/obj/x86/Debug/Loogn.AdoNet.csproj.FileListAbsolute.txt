@@ -1,0 +1,10 @@
+F:\Loogn\Loogn.AdoNet\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\Loogn\Loogn.AdoNet\bin\Debug\Loogn.AdoNet.dll
+F:\Loogn\Loogn.AdoNet\bin\Debug\Loogn.AdoNet.pdb
+F:\Loogn\Loogn.AdoNet\obj\x86\Debug\Loogn.AdoNet.dll
+F:\Loogn\Loogn.AdoNet\obj\x86\Debug\Loogn.AdoNet.pdb
+C:\Users\loognping\Desktop\Loogn\Loogn.AdoNet\bin\Debug\Loogn.AdoNet.dll
+C:\Users\loognping\Desktop\Loogn\Loogn.AdoNet\bin\Debug\Loogn.AdoNet.pdb
+C:\Users\loognping\Desktop\Loogn\Loogn.AdoNet\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\loognping\Desktop\Loogn\Loogn.AdoNet\obj\x86\Debug\Loogn.AdoNet.dll
+C:\Users\loognping\Desktop\Loogn\Loogn.AdoNet\obj\x86\Debug\Loogn.AdoNet.pdb

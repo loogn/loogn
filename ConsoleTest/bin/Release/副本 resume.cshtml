@@ -1,0 +1,389 @@
+﻿<div class="main">
+    <div class="top auto">
+        <a href="http://www.jjoobb.cn" class="left">
+            <img src="http://image.jjoobb.cn/pages/v11/css/personalPanel/logo.gif" alt="九博人才网" /></a>
+        <p class="right">
+            <span><em class="g9">简历编号：</em>@Model.MyUserID</span><span><span><em class="g9">更新时间：</em>@Model.UpdateDate</span><br />
+                <strong class="alignRight block"> 
+                <!--HavePros Begin-->
+                    <a href="/CareerPros.aspx?MID=@Model.MyUserID" target="_blank" style="color: #3d990f;">我的职业观</a>&nbsp;&nbsp;<!--HavePros End-->
+                    <!--HaveIntellect Begin-->
+                    <a href="/IntellectPros.aspx?MID=@Model.MyUserID" target="_blank" style="color: #3d990f;">智力测试题</a><!--HaveIntellect End--></strong></p>
+    </div>
+    <div id="jsResumeContent" class="resumeCenter">
+        <h2 style="border-top: none;">
+            基本信息</h2>
+        <!--BaseInfo Begin-->
+        <table class="section">
+            <colgroup>
+                <col width="264" />
+                <col width="252" />
+                <col width="102" />
+            </colgroup>
+            <tr>
+                <td id="username" colspan="2">
+                    <span>姓 名：</span>@Model.BaseInfo.MyName
+                </td>
+                <td>
+                   
+                </td>
+                <td rowspan="7">
+                    <div class="photo">
+                        <a href="@Model.Photo.PhotoVisitUrl" target="_blank">
+                            <img src="@Model.Photo.PhotoVisitUrl" /></a></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>性 别：</span>@Model.BaseInfo.SexCN
+                </td>
+                <td>
+                    <span>婚姻状况：</span>@Model.BaseInfo.MaritalName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>民 族：</span>@Model.BaseInfo.NationName
+                </td>
+                <td>
+                    <span>出生日期：</span>@Model.BaseInfo.BirthdayName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>身份证号：</span>@Model.BaseInfo.CardNumShort
+                </td>
+                <td>
+                    <span>身 高：</span>@Model.BaseInfo.Height cm
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>学 历：</span>@Model.BaseInfo.DegreeName
+                </td>
+                <td>
+                    <span>工作年限：</span>@Model.BaseInfo.WorkExperience
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>现所在地：</span>@Model.BaseInfo.Location
+                </td>
+                <td>
+                    <span>户 籍：</span>@Model.BaseInfo.Hometown
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span>通讯地址：</span>@Model.BaseInfo.Address
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            自我评价</h2>
+        <table>
+            <tr>
+                <td>
+                    @Model.BaseInfo.Evaluation
+                </td>
+            </tr>
+        </table>
+        <!--BaseInfo End-->
+        <!--HopeJob Begin-->
+        <h2>
+            求职意向</h2>
+        <table class="section">
+            <colgroup>
+                <col width="264" />
+                <col width="252" />
+                <col width="102" />
+            </colgroup>
+            <tr>
+                <td>
+                    <span>最近工作职位：</span>@Model.HopeJob.LatelyWork
+                </td>
+                <td colspan="2">
+                    <span>期望工作地区：</span>@Model.HopeJob.JobLocationName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>期望工作岗位：</span>@Model.HopeJob.JobFunctionName
+                </td>
+                <td colspan="2">
+                    <span>期望从事行业：</span>@Model.HopeJob.JobIndustryName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>求职类型：</span>@Model.HopeJob.JobTypeName
+                </td>
+                <td colspan="2">
+                    <span>薪金要求：</span>@Model.HopeJob.SalaryName
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <span class="left" style="width: 84px;">职业目标：</span><em class="left" style="width: 600px;">@Model.HopeJob.Treatment</em>
+                </td>
+            </tr>
+        </table>
+        <!--HopeJob End-->
+ 
+        <h2>
+            教育经历</h2>
+        <table class="section edu">
+            <colgroup>
+                <col width="191" />
+                <col width="194" />
+                <col width="246" />
+                <col width="67" />
+            </colgroup>
+            @foreach (var edu in Model.Education)
+            {
+                <tr>
+                <td>
+                    @edu.BeginDateName～@edu.EndDateName
+                </td>
+                <td>
+                    @edu.School
+                </td>
+                <td>
+                    @edu.Speciality【@edu.DegreeName】
+                </td>
+                <td class="alignCenter">
+                </td>
+            </tr>
+            }
+            
+        </table>
+        
+        <!--Work Begin-->
+        <h2>
+            工作经历</h2>
+        <!--Loop Begin-->
+        @foreach (var work in Model.Work)
+        {
+            <table class="section work">
+            <colgroup>
+                <col width="191" />
+                <col width="244" />
+                <col width="196" />
+                <col />
+            </colgroup>
+            <tr>
+                <td>
+                    &diams; @work.BeginDateName～@work.EndDateName
+                </td>
+                <td>
+                    @work.CompanyName
+                </td>
+                <td>
+                    @work.WorkName
+                </td>
+                <td class="alignCenter">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    公司介绍：@work.CompanyIntro
+                </td>
+            </tr>
+        </table>
+        }
+        
+        <!--Loop End-->
+        <!--Work End-->
+        <!--Train Begin-->
+        <h2>
+            培训经历</h2>
+        <!--Loop Begin-->
+        @foreach (var train in Model.Train)
+        {
+            <table class="section train">
+            <colgroup>
+                <col width="191" />
+                <col width="194" />
+                <col width="246" />
+                <col width="67" />
+            </colgroup>
+            <tr>
+                <td>
+                    @train.BeginDateName～@train.EndDateName
+                </td>
+                <td>
+                    @train.Organization
+                </td>
+                <td>
+                    @train.Course
+                </td>
+                <td class="alignCenter">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    培训描述：@train.TrainIntro
+                </td>
+            </tr>
+        </table>
+        }
+        
+        <!--Loop End-->
+        <!--Train End-->
+        <!--Skill Begin-->
+        <h2>
+            技能特长</h2>
+        <table class="section">
+            <colgroup>
+                <col width="264" />
+                <col width="252" />
+                <col width="102" />
+            </colgroup>
+            <tr>
+                <td>
+                    <span>英语水平：</span>@Model.Skill.EnglishLevelName
+                </td>
+                <td colspan="2">
+                    <span>掌握语言：</span>@Model.Skill.LanguageName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>计算机水平：</span>@Model.Skill.ComputerLevel
+                </td>
+                <td colspan="2">
+                    <span>专业职称：</span>@Model.Skill.CareerName
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="vAlignTop">
+                    <span>计算机技能：</span>@Model.Skill.ComputerSkill
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="vAlignTop">
+                    <span>职业技能：</span>@Model.Skill.CareerSkill
+                </td>
+            </tr>
+        </table>
+        <!--Skill End-->
+        <!--Certificate Begin-->
+        <h2>
+            荣誉证书</h2>
+        <table class="section honour">
+            <colgroup>
+                <col width="191" />
+                <col width="194" />
+                <col width="246" />
+                <col width="67" />
+            </colgroup>
+            <!--Loop Begin-->
+            @foreach (var cert in Model.Certificate)
+            {
+                <tr>
+                <td>
+                    @cert.CertificateName
+                </td>
+                <td>
+                    @cert.AwardDateName
+                </td>
+                <td colspan="2">
+                    <!--CerImage Begin-->
+                    <a href="@cert.ImageVisitUrl" target="_blank">查看证书</a><!--CerImage End-->
+                </td>
+            </tr>
+            }
+            
+            <!--Loop End-->
+        </table>
+        <!--Certificate End-->
+        <!--Added Begin-->
+        <h2>
+            附加信息</h2>
+        <table class="section honour">
+            <colgroup>
+                <col />
+            </colgroup>
+            <!--Loop Begin-->
+            @foreach (var add in Model.Added)
+            {
+                 <tr>
+                <td>
+                   @add.ItemName：@add.AddedContentHtml
+                </td>
+            </tr>
+            }
+           
+            <!--Loop End-->
+        </table>
+        <!--Added End-->
+        <!--Contact Begin-->
+        <h2>
+            联系方式</h2>
+        <!--IsContactEnabled Begin-->
+        <!--Enabled Begin-->
+        <table class="section">
+            <colgroup>
+                <col width="264" />
+                <col width="252" />
+                <col width="102" />
+            </colgroup>
+            <tr>
+                <td>
+                    <span>联系电话：</span>@Model.BaseInfo.ContactPhone
+                </td>
+                <td colspan="2">
+                    <span>ＱＱ号码：</span>@Model.BaseInfo.IMNumber
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>移动电话：</span>@Model.BaseInfo.MobilePhone
+                </td>
+                <td colspan="2">
+                    <span>电子邮件：</span>@Model.BaseInfo.Email
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>邮政编码：</span>@Model.BaseInfo.ZipCode
+                </td>
+                <td colspan="2">
+                    <span>个人主页：</span>@Model.BaseInfo.Homepage
+                </td>
+            </tr>
+        </table>
+        <!--Enabled End-->
+        <!--Disabled Begin-->
+        <table>
+            <tr>
+                <td style="color: Red;">
+                    您未下载该简历，点击下载后将会显示联系方式。
+                    <!--下载简历按钮 Begin-->
+                    <input type="button" id="btnDownload" value="下载该简历" class="btt2" onclick="downloadResume(@Model.BaseInfo.MyUserID);" /><!--下载简历按钮 End-->
+                </td>
+            </tr>
+        </table>
+        <!--Disabled End-->
+        <!--FreeMemberView Begin-->
+        <table>
+            <tr>
+                <td style="color: Red;">
+                    您不是正式会员，无法查看联系方式。
+                </td>
+            </tr>
+        </table>
+        <!--FreeMemberView End-->
+        <!--IsContactEnabled End-->
+        <!--Contact End-->
+        <div id="reusmeTip">
+                    <a href="http://www.jjoobb.cn" target="_blank" class="user">登九博网 圆工作梦</a>
+                    <input type="button" class="btn" value="下载Word简历" id="btnDownResumeDoc" onclick="downResumeDoc()" />
+                    
+        </div>
+        <input type="hidden" name="hidEngResumeFlag" value="{ContactFlag}" />
+        <input type="hidden" name="hidContactFlag" value="{ContactFlag}" />
+    </div>
+</div>

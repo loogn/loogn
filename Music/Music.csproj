@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EDF7D55D-66A3-4C87-AAB1-E02935665A60}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Music</RootNamespace>
+    <AssemblyName>Music</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\reset.css" />
+    <Content Include="image\logo.png" />
+    <Content Include="index.htm" />
+    <Content Include="js\jquery-1.10.2.min.js" />
+    <Content Include="js\sm2\soundmanager2-nodebug-jsmin.js" />
+    <Content Include="js\sm2\swf\soundmanager2.swf" />
+    <Content Include="js\sm2\swf\soundmanager2_debug.swf" />
+    <Content Include="js\sm2\swf\soundmanager2_flash9.swf" />
+    <Content Include="js\sm2\swf\soundmanager2_flash9_debug.swf" />
+    <Content Include="menzhua.mp3" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-pause-light.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-pause-light.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-pause.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-pause.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-play-light.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-play-light.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-play.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-play.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-pause-light.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-pause-light.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-pause.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-pause.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-play-light.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-play-light.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-play.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\360-button-vis-play.png" />
+    <Content Include="soundmanagerv2\demo\360-player\360player-visualization.css" />
+    <Content Include="soundmanagerv2\demo\360-player\360player.css" />
+    <Content Include="soundmanagerv2\demo\360-player\canvas-visualization-basic.html" />
+    <Content Include="soundmanagerv2\demo\360-player\canvas-visualization.html" />
+    <Content Include="soundmanagerv2\demo\360-player\demo-slider-controls.css" />
+    <Content Include="soundmanagerv2\demo\360-player\demo-slider-controls.js" />
+    <Content Include="soundmanagerv2\demo\360-player\demo.css" />
+    <Content Include="soundmanagerv2\demo\360-player\icon_loading_dots.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\icon_loading_spinner.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\icon_loading_spinner_bigger.gif" />
+    <Content Include="soundmanagerv2\demo\360-player\index.html" />
+    <Content Include="soundmanagerv2\demo\360-player\script\360player.js" />
+    <Content Include="soundmanagerv2\demo\360-player\script\berniecode-animator.js" />
+    <Content Include="soundmanagerv2\demo\360-player\script\excanvas.js" />
+    <Content Include="soundmanagerv2\demo\animation-1\css\animation.css" />
+    <Content Include="soundmanagerv2\demo\animation-1\image\ball.gif" />
+    <Content Include="soundmanagerv2\demo\animation-1\index.html" />
+    <Content Include="soundmanagerv2\demo\animation-1\script\animation.js" />
+    <Content Include="soundmanagerv2\demo\animation-2a\bg-land.png" />
+    <Content Include="soundmanagerv2\demo\animation-2a\bg-sky.png" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-10.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-11.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-3.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-4.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-5.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-6.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-7.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-8.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-9.cur" />
+    <Content Include="soundmanagerv2\demo\animation-2a\cursor-shadow.png" />
+    <Content Include="soundmanagerv2\demo\animation-2a\dot.png" />
+    <Content Include="soundmanagerv2\demo\animation-2a\index.html" />
+    <Content Include="soundmanagerv2\demo\animation-2b\audio\bonk.mp3" />
+    <Content Include="soundmanagerv2\demo\animation-2b\audio\fingerplop.mp3" />
+    <Content Include="soundmanagerv2\demo\animation-2b\audio\fingerplop2.mp3" />
+    <Content Include="soundmanagerv2\demo\animation-2b\css\animation.css" />
+    <Content Include="soundmanagerv2\demo\animation-2b\image\ball.gif" />
+    <Content Include="soundmanagerv2\demo\animation-2b\image\point.png" />
+    <Content Include="soundmanagerv2\demo\animation-2b\index.html" />
+    <Content Include="soundmanagerv2\demo\animation-2b\script\animation.js" />
+    <Content Include="soundmanagerv2\demo\animation\audio\bonk.mp3" />
+    <Content Include="soundmanagerv2\demo\animation\audio\fingerplop.mp3" />
+    <Content Include="soundmanagerv2\demo\animation\audio\fingerplop2.mp3" />
+    <Content Include="soundmanagerv2\demo\animation\index.html" />
+    <Content Include="soundmanagerv2\demo\api\index.html" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\css\cassette-tape-ui-blur-nojs.css" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\css\cassette-tape-ui-blur.css" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\css\cassette-tape-ui.css" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\css\demo.css" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\font\JustAnotherHand_ttf_font_LICENSE.txt" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\black-micro.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\body-texture-strips.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\demo_backgrounds\sfatnight_1600.jpg" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\gradient.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\ma-r90-body-skin.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\ma-r90-mask.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\ma-r90-metal-pattern-v2.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\rail-middle-outline.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\spool-metal-black.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\spool-metal.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\spool-spokes.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\tape-guide.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\tape-screw-dark.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\tape-screw.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\tape-texture.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\image\_src\MA-R90 metal pattern.png" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\index.html" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\more.html" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\script\cassette-tape-ui.js" />
+    <Content Include="soundmanagerv2\demo\cassette-tape\script\demo.js" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\christmaslights.css" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\christmaslights.js" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bg-strip-dark.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\blank.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-32x32-bottom.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-32x32-left.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-32x32-right.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-32x32-top.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-50x50-bottom.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-50x50-fragments.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-50x50-left.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-50x50-right.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-50x50-top.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-50x50.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-64x64-bottom.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-64x64-left.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-64x64-right.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-64x64-top.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-72x72-bottom.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-72x72-left.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-72x72-right.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-72x72-top.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-96x96-bottom.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-96x96-left.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-96x96-right.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\bulbs-96x96-top.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\image\noise-pattern.png" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\index.html" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\sound\glass0.mp3" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\sound\glass1.mp3" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\sound\glass2.mp3" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\sound\glass3.mp3" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\sound\glass4.mp3" />
+    <Content Include="soundmanagerv2\demo\christmas-lights\sound\glass5.mp3" />
+    <Content Include="soundmanagerv2\demo\debug.css" />
+    <Content Include="soundmanagerv2\demo\flashblock\basic.html" />
+    <Content Include="soundmanagerv2\demo\flashblock\flashblock.css" />
+    <Content Include="soundmanagerv2\demo\flashblock\index.html" />
+    <Content Include="soundmanagerv2\demo\flashblock\method1\flashblock.css" />
+    <Content Include="soundmanagerv2\demo\flashblock\method1\flashblock.js" />
+    <Content Include="soundmanagerv2\demo\flashblock\method1\index.html" />
+    <Content Include="soundmanagerv2\demo\index-rollup.css" />
+    <Content Include="soundmanagerv2\demo\index-rollup.js" />
+    <Content Include="soundmanagerv2\demo\index.css" />
+    <Content Include="soundmanagerv2\demo\index.html" />
+    <Content Include="soundmanagerv2\demo\index.js" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\basic.html" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\css\mp3-player-button.css" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\image\arrow-right-black.gif" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\image\arrow-right-black.png" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\image\arrow-right-white.gif" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\image\arrow-right-white.png" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\index.html" />
+    <Content Include="soundmanagerv2\demo\mp3-player-button\script\mp3-player-button.js" />
+    <Content Include="soundmanagerv2\demo\mpc\acoustic-drumkit.xml" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_BD_1.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_FTM2.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_HHCL.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_HHOP.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_HHPD.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_HTM.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_LTM2.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_MTM.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_RIM1.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_SN13.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\AMB_SN_5.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\CHINA_1.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\CRASH_1.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\CRASH_5.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\CRASH_6.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\RIDE_1.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\RIDE_3.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\audio\SPLASH_1.mp3" />
+    <Content Include="soundmanagerv2\demo\mpc\css\mpc.css" />
+    <Content Include="soundmanagerv2\demo\mpc\image\progress.png" />
+    <Content Include="soundmanagerv2\demo\mpc\index.html" />
+    <Content Include="soundmanagerv2\demo\mpc\script\mpc.js" />
+    <Content Include="soundmanagerv2\demo\page-player\basic.html" />
+    <Content Include="soundmanagerv2\demo\page-player\css\demo.css" />
+    <Content Include="soundmanagerv2\demo\page-player\css\optional-annotations.css" />
+    <Content Include="soundmanagerv2\demo\page-player\css\optional-themes.css" />
+    <Content Include="soundmanagerv2\demo\page-player\css\page-player.css" />
+    <Content Include="soundmanagerv2\demo\page-player\image\divot-bottom.png" />
+    <Content Include="soundmanagerv2\demo\page-player\image\divot.png" />
+    <Content Include="soundmanagerv2\demo\page-player\image\top-highlight.png" />
+    <Content Include="soundmanagerv2\demo\page-player\index.html" />
+    <Content Include="soundmanagerv2\demo\page-player\script\optional-page-player-metadata.js" />
+    <Content Include="soundmanagerv2\demo\page-player\script\page-player.js" />
+    <Content Include="soundmanagerv2\demo\page-player\xbm-test.html" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\basic.html" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\css\inlineplayer.css" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\image\icon_pause.gif" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\image\icon_pause.png" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\image\icon_play.gif" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\image\icon_play.png" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\image\test.gif" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\index.html" />
+    <Content Include="soundmanagerv2\demo\play-mp3-links\script\inlineplayer.js" />
+    <Content Include="soundmanagerv2\demo\template\deferred-example.html" />
+    <Content Include="soundmanagerv2\demo\template\html5-dtd-test.html" />
+    <Content Include="soundmanagerv2\demo\template\index.html" />
+    <Content Include="soundmanagerv2\demo\template\sm2_defer-example.html" />
+    <Content Include="soundmanagerv2\demo\template\template.css" />
+    <Content Include="soundmanagerv2\demo\_image\360ui-screenshot1.png" />
+    <Content Include="soundmanagerv2\demo\_image\360ui-screenshot2.png" />
+    <Content Include="soundmanagerv2\demo\_image\360ui-screenshot3.png" />
+    <Content Include="soundmanagerv2\demo\_image\360ui-screenshot4.png" />
+    <Content Include="soundmanagerv2\demo\_image\cassette-tape-ui-screenshot.jpg" />
+    <Content Include="soundmanagerv2\demo\_image\cassette-tape-ui-screenshot.png" />
+    <Content Include="soundmanagerv2\demo\_image\christmas-lights.jpg" />
+    <Content Include="soundmanagerv2\demo\_image\christmas-lights.png" />
+    <Content Include="soundmanagerv2\demo\_image\fitter-happier-waveform.jpg" />
+    <Content Include="soundmanagerv2\demo\_image\fitter-happier-waveform.png" />
+    <Content Include="soundmanagerv2\demo\_image\flash9-dark.png" />
+    <Content Include="soundmanagerv2\demo\_image\flash9.png" />
+    <Content Include="soundmanagerv2\demo\_image\getsatisfaction-icon.gif" />
+    <Content Include="soundmanagerv2\demo\_image\glyphish-dot-com-icons-and-android-sprite.png" />
+    <Content Include="soundmanagerv2\demo\_image\hue_thumb.png" />
+    <Content Include="soundmanagerv2\demo\_image\logo-sprite.png" />
+    <Content Include="soundmanagerv2\demo\_image\mpc-screenshot.png" />
+    <Content Include="soundmanagerv2\demo\_image\muxtape-logo.png" />
+    <Content Include="soundmanagerv2\demo\_image\new-bw.png" />
+    <Content Include="soundmanagerv2\demo\_image\new-dark.png" />
+    <Content Include="soundmanagerv2\demo\_image\new.png" />
+    <Content Include="soundmanagerv2\demo\_image\noise-dark.png" />
+    <Content Include="soundmanagerv2\demo\_image\noise.png" />
+    <Content Include="soundmanagerv2\demo\_image\picker_thumb.png" />
+    <Content Include="soundmanagerv2\demo\_image\slider-1.png" />
+    <Content Include="soundmanagerv2\demo\_image\slider-bar.gif" />
+    <Content Include="soundmanagerv2\demo\_image\slider.png" />
+    <Content Include="soundmanagerv2\demo\_image\soundmanager2-speaker.png" />
+    <Content Include="soundmanagerv2\demo\_image\speaker.png" />
+    <Content Include="soundmanagerv2\demo\_image\survivor-screenshot.png" />
+    <Content Include="soundmanagerv2\demo\_image\tiny_grid.png" />
+    <Content Include="soundmanagerv2\demo\_image\wedge.png" />
+    <Content Include="soundmanagerv2\demo\_image\wheelsofsteel-full-ui.jpg" />
+    <Content Include="soundmanagerv2\demo\_image\wheelsofsteel-full-ui.png" />
+    <Content Include="soundmanagerv2\demo\_image\wheelsofsteel-single-deck-256.jpg" />
+    <Content Include="soundmanagerv2\demo\_mp3\1hz-10khz-sweep.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\440hz.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\880hz.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\background0.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\background1.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\background2.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\bass.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\button-0.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\button-1.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\click-high.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\click-low.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\coins.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\fancy-beer-bottle-pop.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\going_outside.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\mak.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\mouseover.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\mouseover2.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\mouseover3.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\office_lobby.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\rain.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\select.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\sine, square, sawtooth, rando.mp3" />
+    <Content Include="soundmanagerv2\demo\_mp3\walking.mp3" />
+    <Content Include="soundmanagerv2\doc\download\archive.html" />
+    <Content Include="soundmanagerv2\doc\download\index.html" />
+    <Content Include="soundmanagerv2\doc\generated\docco.css" />
+    <Content Include="soundmanagerv2\doc\generated\public\stylesheets\normalize.css" />
+    <Content Include="soundmanagerv2\doc\generated\soundmanager2.html" />
+    <Content Include="soundmanagerv2\doc\generated\SoundManager2_AS.html" />
+    <Content Include="soundmanagerv2\doc\generated\SoundManager2_AS3.html" />
+    <Content Include="soundmanagerv2\doc\generated\SoundManager2_SMSound_AS3.html" />
+    <Content Include="soundmanagerv2\doc\getstarted\index.html" />
+    <Content Include="soundmanagerv2\doc\index.html" />
+    <Content Include="soundmanagerv2\doc\resources\index.html" />
+    <Content Include="soundmanagerv2\doc\technotes\index.html" />
+    <Content Include="soundmanagerv2\index.html" />
+    <Content Include="soundmanagerv2\license.txt" />
+    <Content Include="soundmanagerv2\script\soundmanager2-jsmin.js" />
+    <Content Include="soundmanagerv2\script\soundmanager2-nodebug-jsmin.js" />
+    <Content Include="soundmanagerv2\script\soundmanager2-nodebug.js" />
+    <Content Include="soundmanagerv2\script\soundmanager2.js" />
+    <Content Include="soundmanagerv2\swf\soundmanager2.swf" />
+    <Content Include="soundmanagerv2\swf\soundmanager2_debug.swf" />
+    <Content Include="soundmanagerv2\swf\soundmanager2_flash9.swf" />
+    <Content Include="soundmanagerv2\swf\soundmanager2_flash9_debug.swf" />
+    <Content Include="soundmanagerv2\troubleshoot\debug.css" />
+    <Content Include="soundmanagerv2\troubleshoot\debug.js" />
+    <Content Include="soundmanagerv2\troubleshoot\fpgss-add-location.png" />
+    <Content Include="soundmanagerv2\troubleshoot\fpgss-added-location.png" />
+    <Content Include="soundmanagerv2\troubleshoot\index.html" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="男人歌.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="go.ashx.cs">
+      <DependentUpon>go.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="go.ashx" />
+    <Content Include="js\sm2\swf\soundmanager2_flash_xdomain.zip" />
+    <None Include="soundmanagerv2\demo\360-player\360 button - large.psd" />
+    <None Include="soundmanagerv2\demo\360-player\360 button.psd" />
+    <None Include="soundmanagerv2\demo\cassette-tape\font\justanotherhand-webfont.eot" />
+    <None Include="soundmanagerv2\demo\cassette-tape\font\justanotherhand-webfont.ttf" />
+    <None Include="soundmanagerv2\demo\cassette-tape\font\justanotherhand-webfont.woff" />
+    <None Include="soundmanagerv2\demo\cassette-tape\font\ostrich-rounded-webfont.eot" />
+    <None Include="soundmanagerv2\demo\cassette-tape\font\ostrich-rounded-webfont.svg" />
+    <None Include="soundmanagerv2\demo\cassette-tape\font\ostrich-rounded-webfont.ttf" />
+    <None Include="soundmanagerv2\demo\cassette-tape\font\ostrich-rounded-webfont.woff" />
+    <None Include="soundmanagerv2\demo\cassette-tape\image\_src\metalspool.psd" />
+    <None Include="soundmanagerv2\demo\cassette-tape\image\_src\metalspoolblack.psd" />
+    <None Include="soundmanagerv2\demo\cassette-tape\image\_src\rail-middle-outline-edited.psd" />
+    <None Include="soundmanagerv2\demo\cassette-tape\image\_src\Tape Mask.psd" />
+    <None Include="soundmanagerv2\demo\cassette-tape\image\_src\tape-screw-dark.psd" />
+    <None Include="soundmanagerv2\demo\cassette-tape\image\_src\tape-screw.psd" />
+    <None Include="soundmanagerv2\demo\cassette-tape\image\_src\TDK MA-R90 body.psd" />
+    <None Include="soundmanagerv2\demo\template\xhtml-test.xhtml" />
+    <None Include="soundmanagerv2\demo\_image\chunk-webfont.svg" />
+    <None Include="soundmanagerv2\demo\_image\chunk-webfont.ttf" />
+    <None Include="soundmanagerv2\demo\_image\chunk-webfont.woff" />
+    <None Include="soundmanagerv2\demo\_image\dejavusansmono-webfont.eot" />
+    <None Include="soundmanagerv2\demo\_image\dejavusansmono-webfont.woff" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\aller-bold.eot" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\aller-bold.ttf" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\aller-bold.woff" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\aller-light.eot" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\aller-light.ttf" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\aller-light.woff" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\novecento-bold.eot" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\novecento-bold.ttf" />
+    <None Include="soundmanagerv2\doc\generated\public\fonts\novecento-bold.woff" />
+    <None Include="soundmanagerv2\README.rdoc" />
+    <None Include="soundmanagerv2\src\make-flash8.bat" />
+    <None Include="soundmanagerv2\src\make-flash8.sh" />
+    <None Include="soundmanagerv2\src\make-flash9.bat" />
+    <None Include="soundmanagerv2\src\make-flash9.sh" />
+    <None Include="soundmanagerv2\src\SoundManager2.as" />
+    <None Include="soundmanagerv2\src\SoundManager2_AS3.as" />
+    <None Include="soundmanagerv2\src\SoundManager2_SMSound_AS3.as" />
+    <Content Include="soundmanagerv2\swf\soundmanager2_flash_xdomain.zip" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5308</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

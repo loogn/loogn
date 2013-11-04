@@ -1,0 +1,5 @@
+F:\Loogn\Loogn.TreeSpliter\obj\Release\ResolveAssemblyReference.cache
+F:\Loogn\Loogn.TreeSpliter\bin\Release\Loogn.TreeSpliter.dll
+F:\Loogn\Loogn.TreeSpliter\bin\Release\Loogn.TreeSpliter.pdb
+F:\Loogn\Loogn.TreeSpliter\obj\Release\Loogn.TreeSpliter.dll
+F:\Loogn\Loogn.TreeSpliter\obj\Release\Loogn.TreeSpliter.pdb

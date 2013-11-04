@@ -1,0 +1,5 @@
+F:\Loogn\Music\bin\Music.dll
+F:\Loogn\Music\bin\Music.pdb
+F:\Loogn\Music\obj\Debug\ResolveAssemblyReference.cache
+F:\Loogn\Music\obj\Debug\Music.dll
+F:\Loogn\Music\obj\Debug\Music.pdb

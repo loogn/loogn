@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>music for all</title>
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .clear
+        {
+            clear: both;
+        }
+        .left
+        {
+            float: left;
+        }
+        .right
+        {
+            float: right;
+        }
+        .none
+        {
+            display: none;
+        }
+        #head div
+        {
+            float: right;
+            background-color: #ccc;
+            margin-top: 2px;
+            height: 30px;
+            line-height: 30px;
+        }
+        #head div a
+        {
+            display: inline-block;
+            margin: auto 5px;
+        }
+    </style>
+</head>
+<body>
+    <div style="height: 800px">
+        <div style="width: 61.8%; margin: 0px auto;">
+            <div id="head" style="height: 30px; background-color: White;">
+                <div id="nologin_block" style="width: 80px">
+                    <a>登 陆</a><a>注 册</a>
+                </div>
+                <div id="logined_block">
+                    <a>Account</a><a>退出</a>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+            <div id="logo">
+                <a style="height: 54px; width: 130px; display: block; background-image: url('image/logo.png')"
+                    href="/index.htm"></a>
+            </div>
+            <div id="player" style="margin-top: 20px">
+                <div style="border: 1px solid #ccc; width: 500px; height: 200px;">
+                    <div style="background-color: Red; width: 20%; height: 200px; float: left;" id="prev_block">
+                    </div>
+                    <div id="curr_block" style="width: 65%; height: 200px; float: left;">
+                    </div>
+                    <div id="next_block" style="background-color: Red; height: 200px; width: 15%; float: left;">
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div id="body">
+            </div>
+            <div id="bottom">
+            </div>
+        </div>
+    </div>
+    <button onclick="start()">
+        start
+    </button>
+    <button onclick="pause()">
+        pause
+    </button>
+    <button onclick="stop()">
+        stop
+    </button>
+    <button onclick="mute()">
+        mute
+    </button>
+    <button onclick="incVolume(-5)">
+        &lt;
+    </button>
+    <button onclick="incVolume(5)">
+        &gt;
+    </button>
+    <script src="js/sm2/soundmanager2-nodebug-jsmin.js" type="text/javascript"></script>
+    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        soundManager.setup({
+            url: 'js/sm2/swf/',
+            flashVersion: 9,
+            onready: smReady,
+            ontimeout: function () {
+                alert("SM2 could not start. Flash blocked, missing or security error? Complain, etc.?")
+            },
+            defaultOptions: {
+                autoLoad: false,        // enable automatic loading (otherwise .load() will call with .play())
+                autoPlay: false,        // enable playing of file ASAP (much faster if "stream" is true)
+                from: null,             // position to start playback within a sound (msec), see demo
+                loops: 1,               // number of times to play the sound. Related: looping (API demo)
+                multiShot: true,        // let sounds "restart" or "chorus" when played multiple times..
+                multiShotEvents: false, // allow events (onfinish()) to fire for each shot, if supported.
+                onid3: null,            // callback function for "ID3 data is added/available"
+                onload: null,           // callback function for "load finished"
+                onstop: null,           // callback for "user stop"
+                onfinish: null,         // callback function for "sound finished playing"
+                onpause: null,          // callback for "pause"
+                onplay: null,           // callback for "play" start
+                onresume: null,         // callback for "resume" (pause toggle)
+                position: null,         // offset (milliseconds) to seek to within downloaded sound.
+                pan: 0,                 // "pan" settings, left-to-right, -100 to 100
+                stream: true,           // allows playing before entire file has loaded (recommended)
+                to: null,               // position to end playback within a sound (msec), see demo
+                type: null,             // MIME-like hint for canPlay() tests, eg. 'audio/mp3'
+                usePolicyFile: false,   // enable crossdomain.xml request for remote domains (for ID3/waveform access)
+                volume: 50,            // self-explanatory. 0-100, the latter being the max.
+                whileloading: null,     // callback function for updating progress (X of Y bytes received)
+                whileplaying: null     // callback during play (position update)
+            }
+        });
+
+
+
+
+        //soundmanagerv2/doc/index.html
+
+        var mm = {
+            prev: null,
+            curr: null,
+            next: null
+        };
+
+        function smReady() {
+            //var isSupported = soundManager.ok();
+            //alert(isSupported);
+            sound = soundManager.createSound({
+                id: 'soundid',
+                url: 'go.ashx',
+                autoLoad: true,
+                autoPlay: false,
+                onload: function () {
+                    //alert('The sound ' + this.id + ' loaded!');
+                },
+                volume: 50,
+                whileloading: function () {
+                    //loading.....
+                }
+            });
+        }
+
+        var sound = null; //soundid
+
+        function start() {
+            sound.play();
+        }
+
+        function pause() {
+            sound.toggleMute();
+        }
+
+        function stop() {
+            sound.stop();
+        }
+        //销毁
+        function destruct() {
+            sound.destruct();
+            //soundManager.destroySound('soundid')
+        }
+        function mute() {
+            sound.toggleMute();
+            //mute  unmute
+        }
+
+        function incVolume(inc) {
+            sound.setVolume(sound.volume + inc);
+        }
+
+
+        //放到哪了
+        //soundManager.onPosition('mySound', 3000, function(eventPosition){console.log(this.id+' reached '+eventPosition;});
+
+        //判断是否能播放
+        var sURL = '/path/to/some.mp3';
+        if (soundManager.canPlayURL(sURL)) {
+            soundManager.createSound('fooSound', sURL);
+        }
+
+    </script>
+</body>
+</html>

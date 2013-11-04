@@ -1,0 +1,311 @@
+﻿##|TYPE Template
+##|UNIQUEID dbfa1cbe-71da-4328-af6d-6a3919fe0b7c
+##|TITLE CSharpModel
+##|NAMESPACE 
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|COMMENTS_BEGIN
+生成Model和DAL层
+##|COMMENTS_END
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui(ZeusContext context) : base(context) {}
+	
+	 //Encoding: gb2312
+	public override void Setup()
+	{
+		//Config 
+		string SavePath=@"D:\QQPCmgr\桌面\";
+		string defaultDB="BSNS";
+		string NameSpace="BSNS";
+		string ConnName="";
+		
+		
+		
+		ui.Width=300;
+		ui.Height=700;
+		//选择路径
+		ui.AddLabel("lblPath","选择路径","");
+		ui.AddTextBox("tbPath",SavePath,"");
+		ui.AddFilePicker("fpPath","浏览","","tbPath",true);
+		ITable t;
+		
+		//命名空间
+		ui.AddLabel("lblNamespace","命名空间:","");
+		ui.AddTextBox("tbNamespace",NameSpace,"");
+		
+		
+		//选择数据库
+		ui.AddLabel("lblDatabase","选择数据库","");
+	   	GuiComboBox cmbDatabases= ui.AddComboBox("cmbDatabases","");
+		
+		if(IsConnected())
+		{
+			cmbDatabases.BindData(MyMeta.Databases);
+		}
+		
+		
+		//选择表
+		ui.AddLabel("lblTables","选择表","");
+		GuiListBox lstTables=ui.AddListBox("lstTables","");
+		lstTables.Height=300;
+		
+		//默认数据库
+		if(IsConnected() && defaultDB!="")
+		{
+			cmbDatabases.SelectedValue=defaultDB;
+			lstTables.BindData(MyMeta.Databases[cmbDatabases.SelectedValue].Tables);
+		}
+		
+		
+		
+		ui.AddLabel("lblConnName","Web.config链接字符串名:","");
+		ui.AddTextBox("tbConnName",ConnName,"");
+		ui.AddCheckBox("cbModel","生成模型层",true,"");
+		ui.AddCheckBox("cbDAL","生成数据访问层",true,"");
+		cmbDatabases.AttachEvent("onchange","cmbDatabases_onchange");
+		ui.ShowGui=true;
+	}
+	public void cmbDatabases_onchange(GuiComboBox control)
+	{
+		if(IsConnected())
+		{
+			GuiListBox lstTables =ui["lstTables"] as GuiListBox;
+			lstTables.BindData(MyMeta.Databases[control.SelectedValue].Tables);
+		}
+	}
+	public bool IsConnected()
+	{
+		return MyMeta.IsConnected;
+	}
+	
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+
+	//---------------------------------------------------
+	// Render() is where you want to write your logic     Encoding: gb2312
+	//---------------------------------------------------
+	private string tbPre="BSNS_";
+	
+	public override void Render()
+	{
+		//命名空间
+		
+		string ns =input["tbNamespace"].ToString();
+		if(string.IsNullOrEmpty(ns))
+		{
+			output.writeln("Namespace is required!");
+			output.writeln("Generate Fail!");
+			return;
+		}
+		GuiComboBox databases=ui["cmbDatabases"] as GuiComboBox;
+		GuiListBox lstTables=ui["lstTables"] as GuiListBox;
+		string path=input["tbPath"].ToString();
+		GuiCheckBox cbModel= ui["cbModel"] as GuiCheckBox;
+		GuiCheckBox cbDAL=ui["cbDAL"] as GuiCheckBox;
+		foreach(string key in lstTables.SelectedItems)
+		{
+			ITable table=MyMeta.Databases[databases.SelectedValue].Tables[key];
+			if(cbModel.Checked)
+			{
+				//生成模型层
+				CreateModel(table);
+			}
+			if(cbDAL.Checked)
+			{
+				//生成数据访问层
+				CreateDAL(table);
+			}
+		}
+		output.writeln("Generate Success!");
+		output.writeln("Path:"+path);
+	}
+	
+	
+	//----------------------
+	// 生成模型层方法
+	//----------------------
+	public void CreateModel(ITable table)
+	{
+			string modelName=table.Alias.Replace(tbPre,"");
+			
+			string path=input["tbPath"].ToString();
+			
+			output.writeln("using System;");
+			output.writeln(String.Empty);
+			//namespace begin
+			output.writeln("namespace "+input["tbNamespace"].ToString()+".Model");
+			output.writeln("{");
+			output.tabLevel++;
+			output.autoTabLn("/// <summary>");
+			output.autoTabLn("/// "+table.Description);
+			output.autoTabLn("/// </summary>");
+			output.autoTabLn("public class "+modelName+"Model");
+			output.autoTabLn("{");
+			output.tabLevel++;
+			
+			foreach(IColumn col in table.Columns)
+			{
+				bool isD=false;
+				if( col.LanguageType=="string" && col.HasDefault)
+				{
+					string d=col.Default.Replace("('","").Replace("')","");
+					output.autoTabLn("private "+col.LanguageType+" _"+col.Alias+" =\""+d+"\";");
+					isD=true;
+				}
+			
+				output.autoTabLn("/// <summary>");
+				output.autoTabLn("/// "+col.Description+" "+col.DataTypeNameComplete);
+				output.autoTabLn("/// </summary>");
+				if(isD)
+				{
+					output.autoTabLn("public "+col.LanguageType+" "+col.Alias+"{ get{return _"+col.Alias+"; } set{_"+col.Alias+" =value;} }");
+					output.writeln("");
+				}
+				else
+				{
+					output.autoTabLn("public "+col.LanguageType+" "+col.Alias+"{ get; set; }");
+					output.writeln("");
+				}
+			}
+			output.tabLevel--;
+			output.autoTabLn("}");//class end
+			output.tabLevel--;
+			output.writeln("}");//namespace end
+			
+			string filePath=path+"/"+input["tbNamespace"].ToString()+"/Model/"+modelName+"Model.cs";
+			output.save(filePath,null);
+			output.clear();
+	}//CreateModel end
+	
+	//----------------------
+	// 生成数据库访问层方法
+	//----------------------
+	public void CreateDAL(ITable table)
+	{
+		string modelName=table.Alias.Replace(tbPre,"");
+		string path=input["tbPath"].ToString();
+		string getHelper="SqlHelper sh = new SqlHelper();";
+		if(input["tbConnName"].ToString()!=string.Empty)
+		{
+			getHelper="SqlHelper sh = new SqlHelper(\""+input["tbConnName"].ToString()+"\");";
+		}
+		
+		output.writeln("using System;");
+		output.writeln("using System.Data.Common;");
+		output.writeln("using System.Collections.Generic;");
+		output.writeln("using LG.DB;");
+		output.writeln("using "+input["tbNamespace"].ToString()+".Model;");
+		output.writeln(String.Empty);
+		//namespace begin
+		output.writeln("namespace "+input["tbNamespace"].ToString()+".DAL");
+		output.writeln("{");
+		output.tabLevel++;
+		//class begin
+		output.autoTabLn("public static class "+modelName+"DAL");
+		output.autoTabLn("{");
+		output.tabLevel++;
+	
+		
+		IColumns keysCol= table.PrimaryKeys ;
+		
+		//=========================Insert
+		output.writeln(string.Empty);
+		output.autoTabLn(string.Format("public static int Insert({0}Model model)",modelName));
+		output.autoTabLn("{");
+		output.tabLevel++;
+		output.autoTabLn(getHelper);
+		foreach(IColumn col in table.Columns)
+		{
+			if(!col.IsAutoKey && col.Default!="(getdate())")
+			{
+				output.autoTabLn("sh.Params.Add(\""+col.Name+"\",model."+col.Alias+");");
+			}
+		}
+		output.autoTabLn(string.Format("int result = sh.Insert(\"{0}\");",table.Alias));
+		output.autoTabLn("return result;");
+		output.tabLevel--;
+		output.autoTabLn("}");
+		
+		
+		//=========================Update
+		output.writeln(string.Empty);
+		output.autoTabLn(string.Format("public static int Update({0}Model model)",modelName));
+		output.autoTabLn("{");
+		output.tabLevel++;
+		output.autoTabLn(getHelper);
+		string pkAuto="ID";
+		foreach(IColumn col in table.Columns)
+		{
+			if(col.IsAutoKey && col.IsInPrimaryKey)
+			{
+				pkAuto=col.Name;
+			}
+			if(col.Default!="(getdate())")
+			{
+				output.autoTabLn("sh.Params.Add(\""+col.Name+"\",model."+col.Alias+");");
+			}
+		}
+		output.autoTabLn(string.Format("int result = sh.Update(\"{0}\",\"{1}\");",table.Alias,pkAuto));
+		output.autoTabLn("return result;");
+		output.tabLevel--;
+		output.autoTabLn("}");
+		
+		
+		//=========================Delete
+		if(keysCol.Count>0)
+		{
+			output.writeln(string.Empty);
+			output.autoTabLn("public static int Delete(int id)");
+			output.autoTabLn("{");
+			output.tabLevel++;
+			output.autoTabLn(getHelper);
+			output.autoTabLn("sh.Params.Add(\"id\",id);");
+			output.autoTabLn(string.Format("int result = sh.Execute(\"delete from [{0}] where {1}=@ID\");",table.Alias,keysCol[0].Name));
+			output.autoTabLn("return result;");
+			output.tabLevel--;
+			output.autoTabLn("}");
+		}
+		
+		
+		//=========================FillModel
+        output.writeln(string.Empty);
+		output.autoTabLn(string.Format("private static {0}Model FillModel(DbDataReader reader)",modelName));
+		output.autoTabLn("{");
+		output.tabLevel++;
+		output.autoTabLn(string.Format("{0}Model model = new {0}Model();",modelName));
+		foreach(IColumn col in table.Columns)
+		{
+			output.autoTabLn(string.Format("model.{0} = ({1})reader[\"{0}\"];",col.Alias,col.LanguageType));	
+		}
+		output.autoTabLn("return model;");
+		output.tabLevel--;
+		output.autoTabLn("}");
+		
+		
+		output.tabLevel--;
+		output.autoTabLn("}");//class end
+		output.tabLevel--;
+		output.autoTabLn("}");//namespace end
+		
+		string filePath=path+"/"+input["tbNamespace"].ToString()+"/DAL/"+modelName+"DAL.cs";
+		output.save(filePath,null);
+		output.clear();		
+		
+	}
+}
+%>
+##|BODY_END

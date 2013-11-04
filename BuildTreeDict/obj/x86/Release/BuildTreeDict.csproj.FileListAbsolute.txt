@@ -1,0 +1,8 @@
+F:\Loogn\BuildTreeDict\obj\x86\Release\ResolveAssemblyReference.cache
+F:\Loogn\BuildTreeDict\bin\Release\BuildTreeDict.exe.config
+F:\Loogn\BuildTreeDict\bin\Release\BuildTreeDict.exe
+F:\Loogn\BuildTreeDict\bin\Release\BuildTreeDict.pdb
+F:\Loogn\BuildTreeDict\bin\Release\Loogn.TreeSpliter.dll
+F:\Loogn\BuildTreeDict\bin\Release\Loogn.TreeSpliter.pdb
+F:\Loogn\BuildTreeDict\obj\x86\Release\BuildTreeDict.exe
+F:\Loogn\BuildTreeDict\obj\x86\Release\BuildTreeDict.pdb

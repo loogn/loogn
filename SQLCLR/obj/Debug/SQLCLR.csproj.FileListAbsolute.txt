@@ -1,0 +1,5 @@
+F:\Loogn\SQLCLR\bin\Debug\SQLCLR.dll
+F:\Loogn\SQLCLR\bin\Debug\SQLCLR.pdb
+F:\Loogn\SQLCLR\obj\Debug\ResolveAssemblyReference.cache
+F:\Loogn\SQLCLR\obj\Debug\SQLCLR.dll
+F:\Loogn\SQLCLR\obj\Debug\SQLCLR.pdb
