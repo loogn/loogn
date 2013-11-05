@@ -12,8 +12,10 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World");
-
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Hello World");
+            }
         }
     }
 }
