@@ -52,15 +52,8 @@ E:\Loogn\ConsoleTest\bin\Debug\ConsoleTest.exe
 E:\Loogn\ConsoleTest\bin\Debug\ConsoleTest.pdb
 E:\Loogn\ConsoleTest\bin\Debug\Loogn.Common.dll
 E:\Loogn\ConsoleTest\bin\Debug\Loogn.DB.dll
-E:\Loogn\ConsoleTest\bin\Debug\Loogn.Timer.dll
-E:\Loogn\ConsoleTest\bin\Debug\RazorEngine.dll
 E:\Loogn\ConsoleTest\bin\Debug\Loogn.Common.pdb
 E:\Loogn\ConsoleTest\bin\Debug\Loogn.DB.pdb
-E:\Loogn\ConsoleTest\bin\Debug\Loogn.Timer.pdb
-E:\Loogn\ConsoleTest\bin\Debug\MongoDB.Bson.pdb
-E:\Loogn\ConsoleTest\bin\Debug\MongoDB.Bson.xml
-E:\Loogn\ConsoleTest\bin\Debug\RazorEngine.pdb
-E:\Loogn\ConsoleTest\bin\Debug\RazorEngine.xml
 E:\BaBaiNew\Program\BaBai\Loogn\ConsoleTest\bin\Debug\ConsoleTest.exe.config
 E:\BaBaiNew\Program\BaBai\Loogn\ConsoleTest\bin\Debug\ConsoleTest.exe
 E:\BaBaiNew\Program\BaBai\Loogn\ConsoleTest\bin\Debug\ConsoleTest.pdb

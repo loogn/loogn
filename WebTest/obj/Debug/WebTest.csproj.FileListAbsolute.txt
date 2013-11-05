@@ -3,3 +3,8 @@ F:\Loogn\WebTest\bin\WebTest.pdb
 F:\Loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
 F:\Loogn\WebTest\obj\Debug\WebTest.dll
 F:\Loogn\WebTest\obj\Debug\WebTest.pdb
+E:\loogn\WebTest\bin\WebTest.dll
+E:\loogn\WebTest\bin\WebTest.pdb
+E:\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
+E:\loogn\WebTest\obj\Debug\WebTest.dll
+E:\loogn\WebTest\obj\Debug\WebTest.pdb

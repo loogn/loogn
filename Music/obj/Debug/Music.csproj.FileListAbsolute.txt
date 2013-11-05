@@ -3,3 +3,8 @@ F:\Loogn\Music\bin\Music.pdb
 F:\Loogn\Music\obj\Debug\ResolveAssemblyReference.cache
 F:\Loogn\Music\obj\Debug\Music.dll
 F:\Loogn\Music\obj\Debug\Music.pdb
+E:\loogn\Music\bin\Music.dll
+E:\loogn\Music\bin\Music.pdb
+E:\loogn\Music\obj\Debug\ResolveAssemblyReference.cache
+E:\loogn\Music\obj\Debug\Music.dll
+E:\loogn\Music\obj\Debug\Music.pdb

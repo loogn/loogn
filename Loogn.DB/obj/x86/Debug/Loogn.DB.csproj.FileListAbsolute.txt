@@ -36,3 +36,7 @@ E:\BaBaiNew\Program\BaBai\Loogn\Loogn.DB\bin\Debug\Hubble.Framework.pdb
 E:\BaBaiNew\Program\BaBai\Loogn\Loogn.DB\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\BaBaiNew\Program\BaBai\Loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.dll
 E:\BaBaiNew\Program\BaBai\Loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.pdb
+E:\loogn\Loogn.DB\bin\Debug\Hubble.SQLClient.dll
+E:\loogn\Loogn.DB\bin\Debug\Hubble.Framework.dll
+E:\loogn\Loogn.DB\bin\Debug\Hubble.SQLClient.pdb
+E:\loogn\Loogn.DB\bin\Debug\Hubble.Framework.pdb
