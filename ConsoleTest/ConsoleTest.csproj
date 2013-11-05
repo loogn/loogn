@@ -115,7 +115,6 @@
     <Content Include="bin\Debug\removes.txt" />
     <Content Include="bin\Debug\appends.txt" />
     <Content Include="bin\Debug\treedict.txt" />
-    <Content Include="readme.txt" />
     <Content Include="treedict.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
