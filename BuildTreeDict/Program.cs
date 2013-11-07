@@ -24,10 +24,10 @@ namespace BuildTreeDict
             }
 
             var lines = File.ReadAllLines(treedict).Where(s => s.Length <= 1).ToArray();
-            
 
 
-            Loogn.TreeSpliter.Tree.BuildTextDicts(treedict, list, File.ReadAllLines(filters, Encoding.UTF8), true);
+
+            Loogn.TreeSpliter.Splitter.BuildTextDicts(treedict, list, File.ReadAllLines(filters, Encoding.UTF8));
             Console.WriteLine("请任意键结束！");
             Console.Read();
         }
