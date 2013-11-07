@@ -32,7 +32,5 @@ namespace Loogn.DB
         {
             return new SqlParameter();
         }
-
-        
     }
 }

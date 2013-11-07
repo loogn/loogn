@@ -41,7 +41,7 @@ namespace Loogn.TreeSpliter
                         string word = null;
                         while ((word = sr.ReadLine()) != null)
                         {
-                            Words.Add(word);
+                            Words.Add(word.ToLowerInvariant());
                         }
                     }
                 }
