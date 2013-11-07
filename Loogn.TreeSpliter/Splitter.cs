@@ -21,11 +21,11 @@ namespace Loogn.TreeSpliter
             var dictTree = new Tree(dictPath);
             return Split(text, dictTree);
         }
-        public static HashSet<string> Split(string input, Tree dictTree)
+        public static HashSet<string> Split(string text, Tree dictTree)
         {
             var terms = new HashSet<string>();
-            if (string.IsNullOrEmpty(input)) return terms;
-            var text = input.ToUpperInvariant();
+            if (string.IsNullOrEmpty(text)) return terms;
+            text = text.ToUpperInvariant();
             var length = text.Length;
             unsafe
             {
@@ -68,6 +68,66 @@ namespace Loogn.TreeSpliter
             return terms;
         }
 
-        
+        public static void BuildTextDicts(string dictFile, IEnumerable<string> appendWords, IEnumerable<string> removeWords)
+        {
+            HashSet<string> dicts;
+            if (File.Exists(dictFile))
+            {
+                dicts = new HashSet<string>(File.ReadAllLines(dictFile,Encoding.UTF8));
+            }
+            else
+            {
+                dicts = new HashSet<string>();
+            }
+            if (appendWords != null)
+            {
+                int appendCount = 0;
+                foreach (var appendWord in appendWords)
+                {
+                    if (dicts.Add(appendWord.ToUpperInvariant()))
+                        appendCount++;
+                }
+                Console.WriteLine("向词库追加加：{0}", appendCount);
+            }
+            if (removeWords != null)
+            {
+                int removeCount = 0;
+                foreach (var removeWord in removeWords)
+                {
+                    if (dicts.Remove(removeWord))
+                        removeCount++;
+                }
+                Console.WriteLine("从词库移除：{0}", removeCount);
+            }
+            File.WriteAllLines(dictFile, dicts.ToArray(), Encoding.UTF8);
+        }
+        public static void FilterTextDicts(string dictFile, IEnumerable<string> includes)
+        {
+            HashSet<string> dicts;
+            if (File.Exists(dictFile))
+            {
+                dicts = new HashSet<string>(File.ReadAllLines(dictFile, Encoding.UTF8));
+            }
+            else
+            {
+                dicts = new HashSet<string>();
+            }
+
+            if (includes != null)
+            {
+
+                int removeCount = 0;
+                foreach (var include in includes)
+                {
+                    removeCount += dicts.RemoveWhere((s) =>
+                    {
+                        return s.IndexOf(include) >= 0;
+                    });
+                }
+                Console.WriteLine("从词库移除：{0}", removeCount);
+            }
+            File.WriteAllLines(dictFile, dicts.ToArray(), Encoding.UTF8);
+        }
     }
+
 }
