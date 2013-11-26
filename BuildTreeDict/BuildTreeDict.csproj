@@ -48,12 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\appends.txt" />
-    <Content Include="bin\Debug\filters.txt" />
-    <Content Include="bin\Debug\treedict.txt" />
-    <Content Include="bin\Debug\九博_treedict.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Loogn.TreeSpliter\Loogn.TreeSpliter.csproj">
       <Project>{6C231202-B8CD-4084-9DF8-2F48A172E67D}</Project>
       <Name>Loogn.TreeSpliter</Name>
@@ -61,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
