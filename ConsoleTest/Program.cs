@@ -16,16 +16,6 @@ namespace ConsoleTest
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
         static void Main(string[] args)
         {
-
-            var dt = DateTime.Parse("2013-11-26 03:00:00");
-
-            Console.WriteLine(dt.ToUniversalTime().ToString("yyyyMMdd"));
-
-            Console.WriteLine(dt.ToString("yyyyMMdd"));
-
-
-            return;
-
             List<BsonDocument> list = new List<BsonDocument>(280000);
             foreach (var line in File.ReadAllLines(@"e:\treedict.txt"))
             {
