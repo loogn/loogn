@@ -23,7 +23,6 @@ namespace ConsoleTest
 
             Console.WriteLine(dt.ToString("yyyyMMdd"));
 
-
             return;
 
             List<BsonDocument> list = new List<BsonDocument>(280000);
