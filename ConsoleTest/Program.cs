@@ -38,8 +38,6 @@ namespace ConsoleTest
             var db = mc.GetServer().GetDatabase("papillon");
             var coll = db.GetCollection("dict");
             coll.InsertBatch(list);
-            
-            //  "C#":[{1,1}]
         }
     }
 }
