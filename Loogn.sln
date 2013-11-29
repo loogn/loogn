@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildTreeDict", "BuildTreeD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTest", "WebTest\WebTest.csproj", "{C7CE7210-29E3-4717-A262-16F512DDCC9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Papillon", "Papillon\Papillon.csproj", "{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,16 @@ Global
 		{C7CE7210-29E3-4717-A262-16F512DDCC9F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C7CE7210-29E3-4717-A262-16F512DDCC9F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C7CE7210-29E3-4717-A262-16F512DDCC9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A760B1DF-1C64-4AC6-BE4A-9B44C9241E59}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

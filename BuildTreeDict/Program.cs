@@ -22,10 +22,8 @@ namespace BuildTreeDict
             {
                 list.AddRange(item.Split(new char[] { '/', '）', '（', '(', ')', '|' }, StringSplitOptions.RemoveEmptyEntries));
             }
-
+            
             var lines = File.ReadAllLines(treedict).Where(s => s.Length <= 1).ToArray();
-
-
 
             Loogn.TreeSpliter.Splitter.BuildTextDicts(treedict, list, File.ReadAllLines(filters, Encoding.UTF8));
             Console.WriteLine("请任意键结束！");

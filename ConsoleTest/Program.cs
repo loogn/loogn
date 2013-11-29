@@ -14,27 +14,25 @@ namespace ConsoleTest
     class Program
     {
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
+
         static void Main(string[] args)
         {
-            var dt = DateTime.Parse("2013-11-26 03:00:00");
-
-            Console.WriteLine(dt.ToUniversalTime().ToString("yyyyMMdd"));
-
-            Console.WriteLine(dt.ToString("yyyyMMdd"));
-
-            
-            List<BsonDocument> list = new List<BsonDocument>(280000);
-            foreach (var line in File.ReadAllLines(@"e:\treedict.txt"))
-            {
-                list.Add(new BsonDocument { { "_id", line } });
-            }
-
-
             MongoClient mc = new MongoClient(mgConn);
+            var db= mc.GetServer().GetDatabase("papillon");
+            MongoDB.Driver.GridFS.MongoGridFS fs = new MongoDB.Driver.GridFS.MongoGridFS(db);
 
-            var db = mc.GetServer().GetDatabase("papillon");
-            var coll = db.GetCollection("dict");
-            coll.InsertBatch(list);
+            fs.Delete("abc.txt");
+            //var stream = fs.Create("abc.txt", new MongoDB.Driver.GridFS.MongoGridFSCreateOptions()
+            //{
+            //    Aliases = new string[] { "ab", "bc" },
+            //    ChunkSize = 1,
+            //    UploadDate = DateTime.Now,
+            //    Metadata = new BsonDocument { { "m1", 23 }, { "m2", "ab" } },
+            //    ContentType = "txt",
+            //});
+            //var data=Encoding.ASCII.GetBytes("23423423434");
+            //stream.Write(data, 0, data.Length);
+            //stream.Close();
         }
     }
 }
