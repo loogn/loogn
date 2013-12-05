@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="jquery-1.10.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <input type="text" id="sessionId" /><input type="button" value="进入" onclick="comin()" /><br />
+    <input type="text" id="message" /><input type="button" value="发送" onclick="send()" />
+    <div id="messages">
+    </div>
+    <script type="text/javascript">
+        function comin() {
+            var url = "MyAsyncHandler.ashx";
+            var xhr = $.ajax({
+                url: url,
+                cache: false,
+                data: { sessionId: $("#sessionId").val() },
+                success: function (data, textStatus) {
+                    $("#messages").html($("#messages").html() + xhr.responseText + "<br/>");
+                },
+                complete: function (xhr) { xhr = null; Jcomin(); }
+            });
+        }
+
+        function send() {
+            var url = "MyHandler.ashx";
+            $.ajax({
+                url: url,
+                cache: false,
+                type: "POST",
+                data: { sessionId: $("#sessionId").val(), message: $("#message").val() },
+                complete: function (xhr) { xhr = null; }
+            });
+        }
+    </script>
+</body>
+</html>
