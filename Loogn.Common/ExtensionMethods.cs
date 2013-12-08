@@ -65,6 +65,38 @@ namespace Loogn.Common
                 (x as IDictionary<string, object>).Add(property.Name, property.Value);
             return x;
         }
-    }
 
+
+        public static int? AsInt32(this string s)
+        {
+            int result;
+            if (int.TryParse(s, out result))
+            {
+                return result;
+            }
+            return null;
+        }
+
+        public static byte? AsByte(this string s)
+        {
+            byte result;
+            if (byte.TryParse(s, out result))
+            {
+                return result;
+            }
+            return null;
+        }
+
+
+
+        public static DateTime? AsDateTime(this string s)
+        {
+            DateTime result;
+            if (DateTime.TryParse(s, out result))
+            {
+                return result;
+            }
+            return null;
+        }
+    }
 }
