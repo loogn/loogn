@@ -51,17 +51,8 @@ namespace ConsoleTest
             Console.WriteLine("Do F");
         }
 
-
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine("Hello World");
-            }
-=======
-            Program p = new Program();
-
             var s = "sdfsdf".AsInt32();
             if (s != null)
             {
@@ -71,20 +62,6 @@ namespace ConsoleTest
                 Console.WriteLine("null");
             }
 
-            //AspectInvoker.AfterAction(F, new Log());
-
-            //var stream = fs.Create("abc.txt", new MongoDB.Driver.GridFS.MongoGridFSCreateOptions()
-            //{
-            //    Aliases = new string[] { "ab", "bc" },
-            //    ChunkSize = 1,
-            //    UploadDate = DateTime.Now,
-            //    Metadata = new BsonDocument { { "m1", 23 }, { "m2", "ab" } },
-            //    ContentType = "txt",
-            //});
-            //var data=Encoding.ASCII.GetBytes("23423423434");
-            //stream.Write(data, 0, data.Length);
-            //stream.Close();
->>>>>>> 0d8a9bc0857044d5f9873e6c91a6111f02414e28
         }
     }
 }
