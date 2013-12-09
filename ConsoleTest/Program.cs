@@ -10,81 +10,32 @@ using System.Text;
 using Loogn.Common;
 using MongoDB.Bson;
 using Loogn.Common.Aspect;
+using System.ComponentModel;
+using System.Net.Sockets;
 namespace ConsoleTest
 {
-    public class Log : IAspectAdvice
-    {
-        public void Before(object target, System.Reflection.MethodInfo mi, params object[] args)
-        {
-            Console.WriteLine("Before");
-        }
-
-        public void After(object target, System.Reflection.MethodInfo mi, params object[] args)
-        {
-            Console.WriteLine("After");
-        }
-
-        public void Throw(object target, System.Reflection.MethodInfo mi, params object[] args)
-        {
-            Console.WriteLine("Throw");
-        }
-    }
-
-    public static class TT
-    {
-        public static void After(this Action act, params IAspectAdvice[] advices)
-        {
-            act();
-            foreach (var ad in advices)
-            {
-                ad.After(act.Target, act.Method);
-            }
-        }
-    }
 
     class Program
     {
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
 
-        void F()
-        {
-            Console.WriteLine("Do F");
-        }
-
 
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            for (int i = 0; i < 3; i++)
+
+            while (true)
             {
-                Console.WriteLine("Hello World");
-            }
-=======
-            Program p = new Program();
+                string msg = Console.ReadLine();
+                var data = Encoding.UTF8.GetBytes(msg);
+                using (TcpClient client = new TcpClient(AddressFamily.InterNetwork))
+                {
 
-            var s = "sdfsdf".AsInt32();
-            if (s != null)
-            {
-                Console.WriteLine(s.Value);
+                    client.Connect("127.0.0.1", 8181);
+                    var stream = client.GetStream();
+                    stream.Write(BitConverter.GetBytes(data.Length), 0, 4);
+                    stream.Write(data, 0, data.Length);
+                }
             }
-            else {
-                Console.WriteLine("null");
-            }
-
-            //AspectInvoker.AfterAction(F, new Log());
-
-            //var stream = fs.Create("abc.txt", new MongoDB.Driver.GridFS.MongoGridFSCreateOptions()
-            //{
-            //    Aliases = new string[] { "ab", "bc" },
-            //    ChunkSize = 1,
-            //    UploadDate = DateTime.Now,
-            //    Metadata = new BsonDocument { { "m1", 23 }, { "m2", "ab" } },
-            //    ContentType = "txt",
-            //});
-            //var data=Encoding.ASCII.GetBytes("23423423434");
-            //stream.Write(data, 0, data.Length);
-            //stream.Close();
->>>>>>> 0d8a9bc0857044d5f9873e6c91a6111f02414e28
         }
     }
 }
