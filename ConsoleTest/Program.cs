@@ -10,58 +10,32 @@ using System.Text;
 using Loogn.Common;
 using MongoDB.Bson;
 using Loogn.Common.Aspect;
+using System.ComponentModel;
+using System.Net.Sockets;
 namespace ConsoleTest
 {
-    public class Log : IAspectAdvice
-    {
-        public void Before(object target, System.Reflection.MethodInfo mi, params object[] args)
-        {
-            Console.WriteLine("Before");
-        }
-
-        public void After(object target, System.Reflection.MethodInfo mi, params object[] args)
-        {
-            Console.WriteLine("After");
-        }
-
-        public void Throw(object target, System.Reflection.MethodInfo mi, params object[] args)
-        {
-            Console.WriteLine("Throw");
-        }
-    }
-
-    public static class TT
-    {
-        public static void After(this Action act, params IAspectAdvice[] advices)
-        {
-            act();
-            foreach (var ad in advices)
-            {
-                ad.After(act.Target, act.Method);
-            }
-        }
-    }
 
     class Program
     {
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
 
-        void F()
-        {
-            Console.WriteLine("Do F");
-        }
 
         static void Main(string[] args)
         {
-            var s = "sdfsdf".AsInt32();
-            if (s != null)
-            {
-                Console.WriteLine(s.Value);
-            }
-            else {
-                Console.WriteLine("null");
-            }
 
+            while (true)
+            {
+                string msg = Console.ReadLine();
+                var data = Encoding.UTF8.GetBytes(msg);
+                using (TcpClient client = new TcpClient(AddressFamily.InterNetwork))
+                {
+
+                    client.Connect("127.0.0.1", 8181);
+                    var stream = client.GetStream();
+                    stream.Write(BitConverter.GetBytes(data.Length), 0, 4);
+                    stream.Write(data, 0, data.Length);
+                }
+            }
         }
     }
 }
