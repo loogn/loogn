@@ -1,10 +1,37 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html>
 <head>
     <title></title>
+    <link href="pure.css" rel="stylesheet" type="text/css" />
     <script src="jquery-1.10.2.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        #friends
+        {
+            height: 500px;
+            background: #212121;
+            width: 150px;
+            float: left;
+        }
+        #main
+        {
+            float: left;
+        }
+        .clear
+        {
+            clear: both;
+            float: none;
+        }
+    </style>
 </head>
 <body>
+    <div>
+        <div id="friends">
+            dddddd</div>
+        <div id="main">
+            ddddddd</div>
+    </div>
+    <div class="clear">
+    </div>
     <input type="text" id="sessionId" /><input type="button" value="进入" onclick="comin()" /><br />
     <input type="text" id="message" /><input type="button" value="发送" onclick="send()" />
     <div id="messages">

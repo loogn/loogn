@@ -51,6 +51,36 @@ namespace Loogn.Common
         }
         #endregion
 
+        #region IEnumerable<T>.MapReduce
+        public static Dictionary<TKey, TResult> MapReduce<TInput, TKey, TValue, TResult>(
+            this IEnumerable<TInput> list,
+            Func<TInput, IEnumerable<KeyValuePair<TKey, TValue>>> map,
+            Func<TKey, IEnumerable<TValue>, TResult> reduce)
+        {
+            Dictionary<TKey, List<TValue>> mapResult = new Dictionary<TKey, List<TValue>>();
+            foreach (var item in list)
+            {
+                foreach (var one in map(item))
+                {
+                    List<TValue> mapValues;
+                    if (!mapResult.TryGetValue(one.Key, out mapValues))
+                    {
+                        mapValues = new List<TValue>();
+                        mapResult.Add(one.Key, mapValues);
+                    }
+                    mapValues.Add(one.Value);
+                }
+            }
+            var result = new Dictionary<TKey, TResult>();
+            foreach (var m in mapResult)
+            {
+                result.Add(m.Key, reduce(m.Key, m.Value));
+            }
+            return result;
+        }
+        #endregion
+
+
         public static dynamic ToDynamic(this object instance)
         {
             var x = new System.Dynamic.ExpandoObject();
@@ -87,8 +117,6 @@ namespace Loogn.Common
             return null;
         }
 
-
-
         public static DateTime? AsDateTime(this string s)
         {
             DateTime result;
@@ -98,5 +126,8 @@ namespace Loogn.Common
             }
             return null;
         }
+
+
+
     }
 }

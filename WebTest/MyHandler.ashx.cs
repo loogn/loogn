@@ -17,6 +17,7 @@ namespace WebTest
             List<MyAsyncResult> userList = MyAsyncHandler.Queue;
             string sessionId = context.Request["sessionId"];
             string message = context.Request["message"];
+
             foreach (var res in userList)
             {
                 if (res.SessionId != sessionId)
