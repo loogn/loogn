@@ -10,7 +10,6 @@ using System.Text;
 using Loogn.Common;
 using MongoDB.Bson;
 using Loogn.Common.Aspect;
-using Loogn.Common;
 using System.ComponentModel;
 using System.Net.Sockets;
 namespace ConsoleTest
