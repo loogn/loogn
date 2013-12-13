@@ -33,12 +33,13 @@ namespace WebTest
         //=======================
         public HttpContext Context { get; set; }
         public AsyncCallback CallBack { get; set; }
-        public string SessionId { get; set; }
-        public string Message { get; set; }
+        public Message Msg { get; set; }
 
-        public MyAsyncResult(HttpContext context, AsyncCallback cb, string sessionId)
+
+        public MyAsyncResult(HttpContext context, AsyncCallback cb, int mid)
         {
-            this.SessionId = sessionId;
+            this.Msg = new Message();
+            this.Msg.ToID = mid;
             this.Context = context;
             this.CallBack = cb;
         }

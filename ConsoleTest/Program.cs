@@ -14,11 +14,10 @@ using System.ComponentModel;
 using System.Net.Sockets;
 namespace ConsoleTest
 {
-    public class Person
+    public class Edge
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
+        public int Length { get; set; }
     }
  
     public class Program
@@ -61,26 +60,7 @@ namespace ConsoleTest
             //Console.WriteLine(rd.ToString());
             #endregion
 
-            List<Person> list=new List<Person> ();
-            list.Add(new Person { ID=1, Name="user1", Age=23 });
-            list.Add(new Person { ID = 2, Name = "user2", Age = 24 });
-            list.Add(new Person { ID = 3, Name = "user3", Age = 23 });
-            list.Add(new Person { ID = 4, Name = "user4", Age = 25 });
-            list.Add(new Person { ID = 5, Name = "user5", Age = 20 });
-
-            var result = list.MapReduce<Person, int, string, string>(Map, 
-                (key, values) => string.Join(",", values));
-            
-            foreach (var d in result)
-            {
-                Console.WriteLine(d.Key + ":" + d.Value);
-            }
         }
 
-        public static IEnumerable<KeyValuePair<int, string>> Map(Person p)
-        {
-            if (p.Age > 22)
-                yield return new KeyValuePair<int, string>(p.Age, p.Name);
-        }
     }
 }

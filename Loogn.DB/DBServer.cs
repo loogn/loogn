@@ -6,6 +6,8 @@ using System.Data.Common;
 using System.Data;
 using Loogn.DB;
 using System.Dynamic;
+using System.Reflection;
+
 
 namespace Loogn.DB
 {
@@ -514,6 +516,21 @@ namespace Loogn.DB
                 throw new ArgumentException("table不能是空和null，找不到对应的表插入");
             }
             var dict = model as IDictionary<string, object>;
+            if (dict == null)
+            {
+                object instance = model;
+                var x = new System.Dynamic.ExpandoObject();
+                var values =
+                    from property in instance.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    select new
+                    {
+                        Name = property.Name,
+                        Value = property.GetValue(instance, null)
+                    };
+                foreach (var property in values)
+                    (x as IDictionary<string, object>).Add(property.Name, property.Value);
+                dict = x;
+            }
             int fieldCount = dict.Count;
             if (fieldCount <= 0)
             {

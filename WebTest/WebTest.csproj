@@ -51,9 +51,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="comet.html" />
-    <Content Include="jquery-1.10.2.min.js" />
-    <Content Include="pure.css" />
+    <Content Include="res\bg.png" />
+    <Content Include="index.html" />
+    <Content Include="res\jquery-1.10.2.min.js" />
+    <Content Include="res\jquery-ui-1.10.3.custom\css\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="res\jquery-ui-1.10.3.custom\js\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="res\pure.css" />
+    <Content Include="res\site.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -65,20 +69,43 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyAsyncHandler.ashx.cs">
-      <DependentUpon>MyAsyncHandler.ashx</DependentUpon>
+    <Compile Include="api\account.ashx.cs">
+      <DependentUpon>account.ashx</DependentUpon>
     </Compile>
+    <Compile Include="api\getmsg.ashx.cs">
+      <DependentUpon>getmsg.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\setmsg.ashx.cs">
+      <DependentUpon>setmsg.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DataOpt.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="CometManager.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="MyAsyncResult.cs" />
-    <Compile Include="MyHandler.ashx.cs">
-      <DependentUpon>MyHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyAsyncHandler.ashx" />
+    <Content Include="api\account.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyHandler.ashx" />
+    <ProjectReference Include="..\Loogn.Common\Loogn.Common.csproj">
+      <Project>{9BC0A4C2-2A5A-4472-AA6B-451B1F461B19}</Project>
+      <Name>Loogn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loogn.DB\Loogn.DB.csproj">
+      <Project>{A1BEE895-21F8-4166-A430-7813EDA6EF41}</Project>
+      <Name>Loogn.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="api\getmsg.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="api\setmsg.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
