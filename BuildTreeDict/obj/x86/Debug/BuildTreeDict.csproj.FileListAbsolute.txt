@@ -1,0 +1,8 @@
+E:\loogn\BuildTreeDict\bin\Debug\BuildTreeDict.exe.config
+E:\loogn\BuildTreeDict\bin\Debug\BuildTreeDict.exe
+E:\loogn\BuildTreeDict\bin\Debug\BuildTreeDict.pdb
+E:\loogn\BuildTreeDict\bin\Debug\Loogn.TreeSpliter.dll
+E:\loogn\BuildTreeDict\bin\Debug\Loogn.TreeSpliter.pdb
+E:\loogn\BuildTreeDict\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.exe
+E:\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.pdb

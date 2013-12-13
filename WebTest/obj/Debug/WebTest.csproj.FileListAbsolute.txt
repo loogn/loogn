@@ -1,0 +1,9 @@
+E:\loogn\WebTest\bin\WebTest.dll
+E:\loogn\WebTest\bin\WebTest.pdb
+E:\loogn\WebTest\bin\Loogn.Common.dll
+E:\loogn\WebTest\bin\Loogn.DB.dll
+E:\loogn\WebTest\bin\Loogn.Common.pdb
+E:\loogn\WebTest\bin\Loogn.DB.pdb
+E:\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
+E:\loogn\WebTest\obj\Debug\WebTest.dll
+E:\loogn\WebTest\obj\Debug\WebTest.pdb

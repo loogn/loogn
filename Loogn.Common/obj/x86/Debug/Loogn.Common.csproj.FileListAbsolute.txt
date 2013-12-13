@@ -1,0 +1,5 @@
+E:\loogn\Loogn.Common\bin\Debug\Loogn.Common.dll
+E:\loogn\Loogn.Common\bin\Debug\Loogn.Common.pdb
+E:\loogn\Loogn.Common\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.dll
+E:\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.pdb

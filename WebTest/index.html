@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="res/pure.css" rel="stylesheet" type="text/css" />
+    <link href="res/site.css" rel="stylesheet" type="text/css" />
+    <link href="res/jquery-ui-1.10.3.custom/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet"
+        type="text/css" />
+</head>
+<body>
+    <div id="memberBox" class="box">
+        <h5 class="title">
+            Hello,<span id="sp_name"></span></h5>
+        <div class="content">
+            <ul id="members">
+            </ul>
+        </div>
+    </div>
+    <div class="box" id="loginBox">
+        <h5 class="title">
+            C:\Windows\system32\cmd.exe</h5>
+        <div class="content">
+            用户：<input type="text" id="name" maxlength="20" /><br />
+            密码：<input type="password" id="password" maxlength="20" />
+            <br />
+            <br />
+            <button type="button" id="loginBtn">
+                登陆</button>&nbsp;&nbsp;
+            <button type="button" id="regBtn">
+                注册</button>
+        </div>
+    </div>
+    <div id="boxtpl" class="none">
+        <div class="box" id="box_{id}" style="width: 550px">
+            <h5 class="title">
+                {name}</h5>
+            <div class="content">
+                <div class="display" style="height: 200px; overflow-y:scroll;">
+                <div class="clear"></div>
+                </div>
+            </div>
+            <textarea class="msgbox"></textarea>
+            <div class="ctrl">
+                <button type="button" onclick="send({id})">
+                    Send</button>
+                <button type="button" onclick="hideBox({id})">
+                    Close</button>
+            </div>
+        </div>
+    </div>
+    <script src="res/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="res/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var me = {};
+        var members = [];
+        var boxZIndex = 1;
+        $(function () {
+            $(".box").draggable({ handle: "h5.title" });
+            $("#loginBtn").on("click", function () {
+                $.post("api/account.ashx?act=login", { name: $("#name").val(), password: $("#password").val() }, function (data) {
+                    if (data == 0) {
+                        alert("登陆失败！");
+                    } else {
+                        me = $.parseJSON(data);
+                        initComet();
+                    }
+
+                });
+            });
+            $("#regBtn").on("click", function () {
+                $.post("api/account.ashx?act=register", { name: $("#name").val(), password: $("#password").val() }, function (data) {
+                    if (data == 1) {
+                        alert("注册成功！请登陆");
+                    } else {
+                        alert("注册失败！");
+                    }
+                });
+            });
+        })
+
+        function initComet() {
+            $("#loginBox").hide();
+            $("#memberBox").show().height($(document).height());
+            $("#sp_name").html(me.Name);
+            reflashMember();
+            setInterval(reflashMember, 5000);
+            getMsg();
+        }
+        function reflashMember() {
+            $.get("api/account.ashx?act=getlist", function (data) {
+                members = $.parseJSON(data);
+                var lis = "";
+                for (var i = 0; i < members.length; i++) {
+                    var m = members[i];
+                    if (m.ID !== me.ID) {
+                        lis += "<li onclick=\"showBox(" + m.ID + ",'" + m.Name + "')\" id='m_" + m.ID + "'>" + m.Name + "</li>";
+                    }
+                }
+                $("#members").html(lis);
+            })
+        }
+
+        function showBox(id, name) {
+            var box = $("#box_" + id);
+            if (box.length == 0) {
+                var boxtpl = $("#boxtpl").html();
+                var boxhtml = boxtpl.replace(/\{id\}/g, id).replace(/\{name\}/g, name);
+                $(boxhtml).css({ "z-index": boxZIndex++, display: "block", top: "0", left: ($(document).width() - 225) / 2 })
+                    .draggable({ handle: "h5.title" })
+                    .appendTo($(document.body));
+            } else {
+                box.css({ "z-index": boxZIndex++, display: "block" });
+            }
+        }
+
+        function hideBox(id) {
+            $("#box_" + id).hide();
+        }
+
+        function getMsg() {
+            var url = "api/getmsg.ashx";
+            var xhr = $.ajax({
+                url: url,
+                cache: false,
+                data: { mid: me.ID },
+                success: function (data, textStatus) {
+                    var msg = $.parseJSON(data);
+                    showBox(msg.FromID, "name:" + msg.FromID);
+                    var display = $("#box_" + msg.FromID + " .display");
+                    var msgDiv = $("<div>").addClass("msg")
+                                            .css({ float: "left", "background-color": "#6EDBD3" })
+                                            .html(msg.FromUser + ":" + msg.Content);
+                    appendDisplay(display, msgDiv);
+                },
+                complete: function (xhr) { xhr = null; getMsg(); }
+            });
+        }
+
+        function appendDisplay(display, msgDiv) {
+            msgDiv.insertBefore(display.find(".clear"));
+            display.scrollTop(display.height());
+
+        }
+
+        function send(toid) {
+            var box = $("#box_" + toid);
+            var msg =$.trim(box.find("textarea").val());
+            if (msg.length > 0) {
+                $.ajax({
+                    url: "api/setmsg.ashx",
+                    cache: false,
+                    type: "POST",
+                    data: { toid: toid, fromid: me.ID, fromuser: me.Name, content: msg },
+                    complete: function (xhr) {
+                        xhr = null;
+                        var display = box.find(".display");
+                        var msgDiv = $("<div>").addClass("msg")
+                                    .css({ "text-align": "right", "float": "right", "background-color": "#FCB153" })
+                                    .html(msg + ":" + me.Name);
+                        appendDisplay(display, msgDiv);
+                        box.find("textarea").val('');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

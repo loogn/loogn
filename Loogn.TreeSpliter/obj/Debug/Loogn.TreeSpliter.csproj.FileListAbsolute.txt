@@ -1,0 +1,5 @@
+E:\loogn\Loogn.TreeSpliter\bin\Debug\Loogn.TreeSpliter.dll
+E:\loogn\Loogn.TreeSpliter\bin\Debug\Loogn.TreeSpliter.pdb
+E:\loogn\Loogn.TreeSpliter\obj\Debug\ResolveAssemblyReference.cache
+E:\loogn\Loogn.TreeSpliter\obj\Debug\Loogn.TreeSpliter.dll
+E:\loogn\Loogn.TreeSpliter\obj\Debug\Loogn.TreeSpliter.pdb
