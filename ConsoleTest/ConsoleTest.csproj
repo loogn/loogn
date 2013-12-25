@@ -61,6 +61,12 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Loogn.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\Loogn.Packager.1.0.0\lib\Loogn.Common.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\OtherFile\DLL\CSharpDriver-1.8.1\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -106,23 +112,16 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="jquery\jquery-1.10.2.min.map" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Loogn.Common\Loogn.Common.csproj">
-      <Project>{9BC0A4C2-2A5A-4472-AA6B-451B1F461B19}</Project>
-      <Name>Loogn.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Loogn.DB\Loogn.DB.csproj">
-      <Project>{A1BEE895-21F8-4166-A430-7813EDA6EF41}</Project>
-      <Name>Loogn.DB</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\removes.txt" />
-    <Content Include="bin\Debug\appends.txt" />
-    <Content Include="bin\Debug\treedict.txt" />
     <Content Include="index.txt" />
+    <Content Include="jquery\jquery-1.10.2.min.js" />
     <Content Include="treedict.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

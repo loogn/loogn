@@ -4,3 +4,12 @@ E:\loogn\Loogn.Timer\bin\Debug\Loogn.Timer.pdb
 E:\loogn\Loogn.Timer\obj\Debug\ResolveAssemblyReference.cache
 E:\loogn\Loogn.Timer\obj\Debug\Loogn.Timer.dll
 E:\loogn\Loogn.Timer\obj\Debug\Loogn.Timer.pdb
+E:\BaBaiNew\Program\loogn\Loogn.Timer\bin\Debug\Loogn.Timer.dll.config
+E:\BaBaiNew\Program\loogn\Loogn.Timer\bin\Debug\Loogn.Timer.dll
+E:\BaBaiNew\Program\loogn\Loogn.Timer\bin\Debug\Loogn.Timer.pdb
+E:\BaBaiNew\Program\loogn\Loogn.Timer\obj\Debug\ResolveAssemblyReference.cache
+E:\BaBaiNew\Program\loogn\Loogn.Timer\obj\Debug\Loogn.Timer.dll
+E:\BaBaiNew\Program\loogn\Loogn.Timer\obj\Debug\Loogn.Timer.pdb
+E:\BaBaiNew\Program\dll\Loogn.Timer.dll.config
+E:\BaBaiNew\Program\dll\Loogn.Timer.dll
+E:\BaBaiNew\Program\dll\Loogn.Timer.pdb

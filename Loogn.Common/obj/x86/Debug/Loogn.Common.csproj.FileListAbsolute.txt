@@ -3,3 +3,10 @@ E:\loogn\Loogn.Common\bin\Debug\Loogn.Common.pdb
 E:\loogn\Loogn.Common\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.dll
 E:\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.pdb
+E:\BaBaiNew\Program\loogn\Loogn.Common\bin\Debug\Loogn.Common.dll
+E:\BaBaiNew\Program\loogn\Loogn.Common\bin\Debug\Loogn.Common.pdb
+E:\BaBaiNew\Program\loogn\Loogn.Common\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\BaBaiNew\Program\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.dll
+E:\BaBaiNew\Program\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.pdb
+E:\BaBaiNew\Program\dll\Loogn.Common.dll
+E:\BaBaiNew\Program\dll\Loogn.Common.pdb

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Loogn.Packager</id>
+    <version>1.0.0</version>
+    <title>Loogn.Packager</title>
+    <authors>Loogn</authors>
+    <owners>BaBai</owners>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>https://www.babai.com/</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Loogn.Common Loogn.DB Loogn.Timer Loogn.TreeSpliter</description>
+    <summary>Loogn dll</summary>
+    <releaseNotes />
+    <tags>CHINA</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="log4net" version="1.2.10" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

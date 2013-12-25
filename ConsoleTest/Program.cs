@@ -60,7 +60,23 @@ namespace ConsoleTest
             //Console.WriteLine(rd.ToString());
             #endregion
 
-        }
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            dict.Add("1", 1);
+            dict.Add("2", 2);
+            List<string> keys = new List<string>();
+            foreach (var kv in dict)
+            {
+                if (kv.Value == 1)
+                {
+                    keys.Add(kv.Key);
+                }
+            }
+            foreach (var key in keys)
+            {
+                dict.Remove(key);
+            }
+            Console.WriteLine(dict.Count);
 
+        }
     }
 }

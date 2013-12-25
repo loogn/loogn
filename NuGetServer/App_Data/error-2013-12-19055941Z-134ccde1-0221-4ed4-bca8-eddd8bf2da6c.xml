@@ -1,0 +1,157 @@
+﻿<error errorId="134ccde1-0221-4ed4-bca8-eddd8bf2da6c" application="/LM/W3SVC/611782234/Root" host="LOOGNPC" type="System.InvalidOperationException" message="IIS 指定了身份验证方案“IntegratedWindowsAuthentication, Anonymous”，但绑定仅支持一种身份验证的规范。有效的身份验证方案为摘要、协商、NTLM、基本或匿名。请更改 IIS 设置，以便仅使用单一的身份验证方案。" source="System.ServiceModel.Web" detail="System.ServiceModel.ServiceActivationException: 由于编译过程中出现异常，无法激活服务“/nuget”。异常消息为: IIS 指定了身份验证方案“IntegratedWindowsAuthentication, Anonymous”，但绑定仅支持一种身份验证的规范。有效的身份验证方案为摘要、协商、NTLM、基本或匿名。请更改 IIS 设置，以便仅使用单一的身份验证方案。。 ---&gt; System.InvalidOperationException: IIS 指定了身份验证方案“IntegratedWindowsAuthentication, Anonymous”，但绑定仅支持一种身份验证的规范。有效的身份验证方案为摘要、协商、NTLM、基本或匿名。请更改 IIS 设置，以便仅使用单一的身份验证方案。&#xD;&#xA;   在 System.ServiceModel.Web.WebServiceHost.SetBindingCredentialBasedOnHostedEnvironment(ServiceEndpoint serviceEndpoint, AuthenticationSchemes supportedSchemes)&#xD;&#xA;   在 System.ServiceModel.Web.WebServiceHost.AddAutomaticWebHttpBindingEndpoints(ServiceHost host, IDictionary`2 implementedContracts, String multipleContractsErrorMessage, String standardEndpointKind)&#xD;&#xA;   在 System.ServiceModel.Web.WebServiceHost.OnOpening()&#xD;&#xA;   在 System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)&#xD;&#xA;   在 System.ServiceModel.ServiceHostingEnvironment.HostingManager.ActivateService(String normalizedVirtualPath)&#xD;&#xA;   在 System.ServiceModel.ServiceHostingEnvironment.HostingManager.EnsureServiceAvailable(String normalizedVirtualPath)&#xD;&#xA;   --- 内部异常堆栈跟踪的结尾 ---&#xD;&#xA;   在 System.Runtime.AsyncResult.End[TAsyncResult](IAsyncResult result)&#xD;&#xA;   在 System.ServiceModel.Activation.HostedHttpRequestAsyncResult.End(IAsyncResult result)&#xD;&#xA;   在 System.ServiceModel.Activation.AspNetRouteServiceHttpHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   在 System.Web.HttpApplication.CallHandlerExecutionStep.OnAsyncHandlerCompletion(IAsyncResult ar)" time="2013-12-19T05:59:41.8437500Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:Keep-Alive&#xD;&#xA;HTTP_ACCEPT:image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/x-ms-application, application/x-ms-xbap, application/vnd.ms-xpsdocument, application/xaml+xml, */*&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:zh-cn&#xD;&#xA;HTTP_HOST:192.168.18.176:8686&#xD;&#xA;HTTP_REFERER:http://192.168.18.176:8686/Default.aspx&#xD;&#xA;HTTP_USER_AGENT:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; BTRS101170; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET4.0C; .NET4.0E; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)&#xD;&#xA;HTTP_UA_CPU:x86&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: Keep-Alive&#xD;&#xA;Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/x-ms-application, application/x-ms-xbap, application/vnd.ms-xpsdocument, application/xaml+xml, */*&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: zh-cn&#xD;&#xA;Host: 192.168.18.176:8686&#xD;&#xA;Referer: http://192.168.18.176:8686/Default.aspx&#xD;&#xA;User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; BTRS101170; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET4.0C; .NET4.0E; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)&#xD;&#xA;UA-CPU: x86&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/611782234/Root" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="E:\BaBaiNew\Program\loogn\NuGetServer\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="611782234" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/611782234" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="192.168.18.176" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/nuget/Packages" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="E:\BaBaiNew\Program\loogn\NuGetServer\nuget\Packages" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="192.168.18.176" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="192.168.18.176" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="6437" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/nuget/Packages" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="192.168.18.176" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="8686" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/6.0" />
+    </item>
+    <item name="URL">
+      <value string="/nuget/Packages" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="Keep-Alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/x-ms-application, application/x-ms-xbap, application/vnd.ms-xpsdocument, application/xaml+xml, */*" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="zh-cn" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="192.168.18.176:8686" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://192.168.18.176:8686/Default.aspx" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; BTRS101170; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET4.0C; .NET4.0E; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)" />
+    </item>
+    <item name="HTTP_UA_CPU">
+      <value string="x86" />
+    </item>
+  </serverVariables>
+</error>
