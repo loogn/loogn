@@ -2,12 +2,8 @@ E:\loogn\ConsoleTest\bin\Debug\ConsoleTest.exe.config
 E:\loogn\ConsoleTest\bin\Debug\ConsoleTest.exe
 E:\loogn\ConsoleTest\bin\Debug\ConsoleTest.pdb
 E:\loogn\ConsoleTest\bin\Debug\Loogn.Common.dll
-E:\loogn\ConsoleTest\bin\Debug\Loogn.DB.dll
 E:\loogn\ConsoleTest\bin\Debug\MongoDB.Bson.dll
 E:\loogn\ConsoleTest\bin\Debug\MongoDB.Driver.dll
-E:\loogn\ConsoleTest\bin\Debug\Loogn.Common.pdb
-E:\loogn\ConsoleTest\bin\Debug\Loogn.DB.pdb
-E:\loogn\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.exe
 E:\loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.pdb
 E:\BaBaiNew\Program\loogn\ConsoleTest\bin\Debug\ConsoleTest.exe.config
@@ -21,3 +17,6 @@ E:\BaBaiNew\Program\loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.exe
 E:\BaBaiNew\Program\loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.pdb
 E:\BaBaiNew\Program\loogn\ConsoleTest\bin\Debug\log4net.dll
 E:\BaBaiNew\Program\loogn\ConsoleTest\bin\Debug\log4net.xml
+E:\Loogn\ConsoleTest\bin\Debug\log4net.dll
+E:\Loogn\ConsoleTest\bin\Debug\log4net.xml
+E:\Loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.csprojResolveAssemblyReference.cache

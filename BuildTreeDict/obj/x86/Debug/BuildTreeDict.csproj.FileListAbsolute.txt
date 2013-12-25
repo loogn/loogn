@@ -3,7 +3,6 @@ E:\loogn\BuildTreeDict\bin\Debug\BuildTreeDict.exe
 E:\loogn\BuildTreeDict\bin\Debug\BuildTreeDict.pdb
 E:\loogn\BuildTreeDict\bin\Debug\Loogn.TreeSpliter.dll
 E:\loogn\BuildTreeDict\bin\Debug\Loogn.TreeSpliter.pdb
-E:\loogn\BuildTreeDict\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.exe
 E:\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.pdb
 E:\BaBaiNew\Program\loogn\BuildTreeDict\bin\Debug\BuildTreeDict.exe.config
@@ -14,3 +13,4 @@ E:\BaBaiNew\Program\loogn\BuildTreeDict\bin\Debug\Loogn.TreeSpliter.pdb
 E:\BaBaiNew\Program\loogn\BuildTreeDict\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\BaBaiNew\Program\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.exe
 E:\BaBaiNew\Program\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.pdb
+E:\Loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.csprojResolveAssemblyReference.cache

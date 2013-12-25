@@ -4,7 +4,6 @@ E:\loogn\WebTest\bin\Loogn.Common.dll
 E:\loogn\WebTest\bin\Loogn.DB.dll
 E:\loogn\WebTest\bin\Loogn.Common.pdb
 E:\loogn\WebTest\bin\Loogn.DB.pdb
-E:\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
 E:\loogn\WebTest\obj\Debug\WebTest.dll
 E:\loogn\WebTest\obj\Debug\WebTest.pdb
 E:\BaBaiNew\Program\loogn\WebTest\bin\WebTest.dll
@@ -16,3 +15,4 @@ E:\BaBaiNew\Program\loogn\WebTest\bin\Loogn.DB.pdb
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\WebTest.dll
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\WebTest.pdb
+E:\Loogn\WebTest\obj\Debug\WebTest.csprojResolveAssemblyReference.cache

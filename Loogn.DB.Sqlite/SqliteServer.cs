@@ -3,20 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-#if SQLite
+
 using System.Data.SQLite;
 using System.Data.Common;
 
 namespace Loogn.DB
 {
-    public class SqliteDbServer : DBServer
+    public class SqliteServer : DBServer
     {
-        public SqliteDbServer(string conn = "", ConnType type = ConnType.ConnName)
+        public SqliteServer(string conn = "", ConnType type = ConnType.ConnName)
             : base(conn, type)
         { }
-        public static SqliteDbServer GetInstance(string conn = "", ConnType type = ConnType.ConnName)
+        public static SqliteServer GetInstance(string conn = "", ConnType type = ConnType.ConnName)
         {
-            return new SqliteDbServer(conn, type);
+            return new SqliteServer(conn, type);
         }
 
         protected override DbConnection GetConn()
@@ -35,4 +35,3 @@ namespace Loogn.DB
         }
     }
 }
-#endif

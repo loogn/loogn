@@ -1,6 +1,5 @@
 E:\loogn\Loogn.DB\bin\Debug\Loogn.DB.dll
 E:\loogn\Loogn.DB\bin\Debug\Loogn.DB.pdb
-E:\loogn\Loogn.DB\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.dll
 E:\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.pdb
 E:\BaBaiNew\Program\loogn\Loogn.DB\bin\Debug\Loogn.DB.dll
@@ -10,3 +9,5 @@ E:\BaBaiNew\Program\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.dll
 E:\BaBaiNew\Program\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.pdb
 E:\BaBaiNew\Program\dll\Loogn.DB.dll
 E:\BaBaiNew\Program\dll\Loogn.DB.pdb
+E:\dll\Loogn.DB.dll
+E:\dll\Loogn.DB.pdb
