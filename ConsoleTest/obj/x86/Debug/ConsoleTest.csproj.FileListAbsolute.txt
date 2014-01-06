@@ -19,4 +19,4 @@ E:\BaBaiNew\Program\loogn\ConsoleTest\bin\Debug\log4net.dll
 E:\BaBaiNew\Program\loogn\ConsoleTest\bin\Debug\log4net.xml
 E:\Loogn\ConsoleTest\bin\Debug\log4net.dll
 E:\Loogn\ConsoleTest\bin\Debug\log4net.xml
-E:\Loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
+E:\loogn\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache
