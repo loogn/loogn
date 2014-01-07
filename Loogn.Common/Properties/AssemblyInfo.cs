@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Loogn.Common")]
-[assembly: AssemblyDescription("Loogn公共方法类库")]
+[assembly: AssemblyDescription("Loogn Common Library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Loogn")]
 [assembly: AssemblyProduct("Loogn.Common")]
