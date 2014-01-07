@@ -20,5 +20,6 @@ public partial class RegexFun
     {
         return new SqlString(Regex.Replace(input.ToString(), pattern.ToString(), replacement.ToString(), RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase));
     }
+
 };
 

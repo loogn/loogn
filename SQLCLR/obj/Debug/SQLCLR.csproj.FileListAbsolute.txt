@@ -3,3 +3,8 @@ F:\Loogn\SQLCLR\bin\Debug\SQLCLR.pdb
 F:\Loogn\SQLCLR\obj\Debug\ResolveAssemblyReference.cache
 F:\Loogn\SQLCLR\obj\Debug\SQLCLR.dll
 F:\Loogn\SQLCLR\obj\Debug\SQLCLR.pdb
+E:\loogn\SQLCLR\obj\Debug\ResolveAssemblyReference.cache
+E:\loogn\SQLCLR\bin\Debug\SQLCLR.dll
+E:\loogn\SQLCLR\bin\Debug\SQLCLR.pdb
+E:\loogn\SQLCLR\obj\Debug\SQLCLR.dll
+E:\loogn\SQLCLR\obj\Debug\SQLCLR.pdb

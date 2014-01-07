@@ -162,4 +162,12 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+<<<<<<< HEAD
 Loogn.DB\obj\x86\Debug*/
+=======
+BuildTreeDict/bin/Debug/BuildTreeDict.exe
+.gitignore
+.gitignore
+.gitignore
+.gitignore
+>>>>>>> 9d2ab5b1629fcb11798450f1219699d2c078835d
