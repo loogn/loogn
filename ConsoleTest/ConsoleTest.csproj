@@ -123,6 +123,12 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Loogn.WeiXinSDK\Loogn.WeiXinSDK.csproj">
+      <Project>{F62BEA6A-7819-4EDE-8683-B1B52ABBC765}</Project>
+      <Name>Loogn.WeiXinSDK</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

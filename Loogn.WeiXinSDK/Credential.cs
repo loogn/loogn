@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Loogn.WeiXinSDK
 {
@@ -37,10 +38,8 @@ namespace Loogn.WeiXinSDK
                     return cred;
                 }
             }
-            string json = Util.HttpRequest(string.Format(TokenUrl, appId, appSecret), "GET", string.Empty, Encoding.Default);
+            var json = Util.HttpGet2(string.Format(TokenUrl, appId, appSecret));
             cred = Util.JsonTo<Credential>(json);
-            cred.add_time = DateTime.Now;
-            creds[appId] = cred;
             return cred;
         }
     }

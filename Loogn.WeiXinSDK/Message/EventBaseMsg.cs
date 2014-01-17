@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Loogn.WeiXinSDK.Message
 {
-    public abstract class EventBaseMsg : RecEventBase
+    public abstract class EventBaseMsg : RecEventBaseMsg
     {
         public abstract EventType Event { get; }
 

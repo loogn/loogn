@@ -19,6 +19,13 @@ namespace Loogn.WeiXinSDK.Message
         /// </summary>
         public string Format{get;set;}
 
+
+        //Recognition	 语音识别结果，UTF8编码
+        /// <summary>
+        /// 语音识别结果，UTF8编码(开通语音识别功能后才会有)
+        /// </summary>
+        public string Recognition { get; set; }
+
         public override MsgType MsgType
         {
             get { return Message.MsgType.voice; }

@@ -12,6 +12,7 @@ using MongoDB.Bson;
 using Loogn.Common.Aspect;
 using System.ComponentModel;
 using System.Net.Sockets;
+using Loogn.WeiXinSDK;
 namespace ConsoleTest
 {
     public class Edge
@@ -23,9 +24,32 @@ namespace ConsoleTest
     public class Program
     {
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
+        //jjoobb2008
+
 
         static void Main(string[] args)
         {
+
+            WeiXin.SetGlobalCredential("wx344ac22d559aec2b", "08e16d4561df55dd770f0a56d0f08a60");
+
+            var fs = WeiXin.GetFollowers("");
+            if (fs.error != null)
+            {
+                Console.WriteLine(fs.error.errcode + ":" + fs.error.errmsg);
+            }
+            else {
+                foreach (var id in fs.data.openid)
+                {
+                    var ui = WeiXin.GetUserInfo(id, LangType.zh_CN);
+                    if (ui.error == null && ui.subscribe > 0)
+                    {
+                        Console.WriteLine(ui.nickname);
+                    }
+                }
+            }
+            
+            return;
+
             #region Mongo ReplicaSet
             //MongoClientSettings set = new MongoClientSettings();
             //List<MongoServerAddress> servers = new List<MongoServerAddress>();

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Loogn.WeiXinSDK.Message
 {
-    public abstract class RecBaseMsg : RecEventBase
+    public abstract class RecBaseMsg : RecEventBaseMsg
     {
         /// <summary>
         /// 消息id

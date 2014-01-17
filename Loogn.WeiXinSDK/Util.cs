@@ -11,12 +11,12 @@ namespace Loogn.WeiXinSDK
 {
     class Util
     {
-        public static Stream HttpRequest(string action, byte[] data)
+        public static Stream HttpPost(string action, byte[] data,bool multi)
         {
             HttpWebRequest myRequest;
             myRequest = WebRequest.Create(action) as HttpWebRequest;
             myRequest.Method = "POST";
-            myRequest.ContentType = "multipart/form-data";
+            myRequest.ContentType = multi?"multipart/form-data": "application/x-www-form-urlencoded";
             myRequest.ContentLength = data.Length;
             using (Stream newStream = myRequest.GetRequestStream())
             {
@@ -25,48 +25,37 @@ namespace Loogn.WeiXinSDK
             HttpWebResponse myResponse = myRequest.GetResponse() as HttpWebResponse;
             return myResponse.GetResponseStream();
         }
-        /// <summary>
-        /// 模拟GET、POST提交
-        /// </summary>
-        /// <param name="action">url</param>
-        /// <param name="method">get or post</param>
-        /// <param name="args">params，如a=avalue&b=bvalue&c=cvalue</param>
-        /// <param name="encoding">encoding</param>
-        /// <returns></returns>
-        public static string HttpRequest(string action, string method, string args, Encoding encoding)
+
+        public static Stream HttpPost(string action, byte[] data)
         {
-            string m = method.ToUpper();
-            HttpWebRequest myRequest;
-            if (m == "GET")
+            return HttpPost(action, data, false);
+        }
+        public static string HttpPost2(string action, string data)
+        {
+            var buffer = Encoding.UTF8.GetBytes(data);
+            using (var stream = Util.HttpPost(action, buffer))
             {
-                if (!string.IsNullOrEmpty(args))
-                {
-                    action = action + "?" + args;
-                }
-                myRequest = WebRequest.Create(action) as HttpWebRequest;
-                myRequest.Method = m;
+                StreamReader sr = new StreamReader(stream);
+                data = sr.ReadToEnd();
+                return data;
             }
-            else if (m == "POST")
-            {
-                myRequest = WebRequest.Create(action) as HttpWebRequest;
-                myRequest.Method = m;
-                byte[] data = encoding.GetBytes(args);
-                myRequest.ContentType = "application/x-www-form-urlencoded";
-                myRequest.ContentLength = data.Length;
-                using (Stream newStream = myRequest.GetRequestStream())
-                {
-                    newStream.Write(data, 0, data.Length);
-                }
-            }
-            else
-            {
-                throw new Exception("method参数必需是GET或POST");
-            }
+        }
+
+        public static Stream HttpGet(string action)
+        {
+            HttpWebRequest myRequest = WebRequest.Create(action) as HttpWebRequest;
+            myRequest.Method = "GET";
             HttpWebResponse myResponse = myRequest.GetResponse() as HttpWebResponse;
-            StreamReader reader = new StreamReader(myResponse.GetResponseStream(), encoding);
-            string content = reader.ReadToEnd();
-            reader.Close();
-            return content;
+            return myResponse.GetResponseStream();
+        }
+        public static string HttpGet2(string action)
+        {
+            using (var stream = Util.HttpGet(action))
+            {
+                StreamReader sr = new StreamReader(stream);
+                var data = sr.ReadToEnd();
+                return data;
+            }
         }
 
         #region json
