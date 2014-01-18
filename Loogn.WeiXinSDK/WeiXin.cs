@@ -60,125 +60,219 @@ namespace Loogn.WeiXinSDK
         /// </summary>
         /// <param name="hander"></param>
         /// <returns></returns>
-        public static ReplyBaseMsg DealMsg(Func<RecEventBaseMsg, ReplyBaseMsg> hander)
+        public static ReplyBaseMsg ReplyMsg()
         {
-            try
+            Stream inputStream = System.Web.HttpContext.Current.Request.InputStream;
+            long pos = inputStream.Position;
+            inputStream.Position = 0;
+            byte[] buffer = new byte[inputStream.Length];
+            inputStream.Read(buffer, 0, buffer.Length);
+            inputStream.Position = pos;
+            string xml = System.Text.Encoding.UTF8.GetString(buffer);
+            var dict = Util.GetDictFromXml(xml);
+            RecEventBaseMsg recEvMsg = null;
+            string key = string.Empty;
+            if (dict.ContainsKey("Event"))
             {
-                Stream inputStream = System.Web.HttpContext.Current.Request.InputStream;
-                long pos = inputStream.Position;
-                inputStream.Position = 0;
-                byte[] buffer = new byte[inputStream.Length];
-                inputStream.Read(buffer, 0, buffer.Length);
-                inputStream.Position = pos;
-                string xml = System.Text.Encoding.UTF8.GetString(buffer);
-                var dict = Util.GetDictFromXml(xml);
-                RecEventBaseMsg recEvMsg = null;
-                if (dict.ContainsKey("Event"))
+                #region 接收事件消息
+                EventBaseMsg evMsg = null;
+                var evt = (EventType)Enum.Parse(typeof(EventType), dict["Event"]);
+                key = MsgType.Event.ToString() + "_" + evt.ToString();
+                switch (evt)
                 {
-                    #region 接收事件消息
-
-                    EventBaseMsg evMsg = null;
-                    var evt = (EventType)Enum.Parse(typeof(EventType), dict["Event"]);
-
-                    switch (evt)
-                    {
-                        case EventType.CLICK:
+                    case EventType.CLICK:
+                        {
+                            evMsg = new EventClickMsg { MyEventType = MyEventType.Click, EventKey = dict["EventKey"] };
+                            break;
+                        }
+                    case EventType.LOCATION:
+                        {
+                            evMsg = new EventLocationMsg { MyEventType = MyEventType.Location, Latitude = double.Parse(dict["Latitude"]), Longitude = double.Parse(dict["Longitude"]), Precision = double.Parse(dict["Precision"]) };
+                            break;
+                        }
+                    case EventType.scan:
+                        {
+                            evMsg = new EventFansScanMsg { MyEventType = MyEventType.FansScan, EventKey = dict["EventKey"], Ticket = dict["Ticket"] };
+                            break;
+                        }
+                    case EventType.unsubscribe:
+                        {
+                            evMsg = new EventUnattendMsg { MyEventType = MyEventType.Unattend };
+                            break;
+                        }
+                    case EventType.subscribe:
+                        {
+                            if (dict.ContainsKey("Ticket"))
                             {
-                                evMsg = new EventClickMsg { MyEventType = MyEventType.Click, EventKey = dict["EventKey"] };
-                                break;
+                                evMsg = new EventUserScanMsg { MyEventType = MyEventType.UserScan, Ticket = dict["Ticket"], EventKey = dict["EventKey"] };
                             }
-                        case EventType.LOCATION:
+                            else
                             {
-                                evMsg = new EventLocationMsg { MyEventType = MyEventType.Location, Latitude = double.Parse(dict["Latitude"]), Longitude = double.Parse(dict["Longitude"]), Precision = double.Parse(dict["Precision"]) };
-                                break;
+                                evMsg = new EventAttendMsg { MyEventType = MyEventType.Attend };
                             }
-                        case EventType.scan:
-                            {
-                                evMsg = new EventFansScanMsg { MyEventType = MyEventType.FansScan, EventKey = dict["EventKey"], Ticket = dict["Ticket"] };
-                                break;
-                            }
-                        case EventType.unsubscribe:
-                            {
-                                evMsg = new EventUnattendMsg { MyEventType = MyEventType.Unattend };
-                                break;
-                            }
-                        case EventType.subscribe:
-                            {
-                                if (dict.ContainsKey("Ticket"))
-                                {
-                                    evMsg = new EventUserScanMsg { MyEventType = MyEventType.UserScan, Ticket = dict["Ticket"], EventKey = dict["EventKey"] };
-                                }
-                                else
-                                {
-                                    evMsg = new EventAttendMsg { MyEventType = MyEventType.Attend };
-                                }
-                                break;
-                            }
-                        default:
-                            return ReplyEmptyMsg.Instance;
-                    }
-                    #endregion
+                            break;
+                        }
+                    default:
+                        return ReplyEmptyMsg.Instance;
                 }
-                else if (dict.ContainsKey("MsgId"))
-                {
-                    #region 接收普通消息
-                    RecBaseMsg recMsg = null;
-                    switch (dict["MsgType"])
-                    {
-                        case "text":
-                            {
-                                recMsg = new RecTextMsg { Content = dict["Content"] };
-                                break;
-                            }
-                        case "image":
-                            {
-
-                                recMsg = new RecImageMsg { PicUrl = dict["PicUrl"], MediaId = dict["MediaId"] };
-                                break;
-                            }
-                        case "voice":
-                            {
-                                string recognition;
-                                dict.TryGetValue("Recognition", out recognition);
-                                recMsg = new RecVoiceMsg { Format = dict["Format"], MediaId = dict["MediaId"], Recognition = recognition };
-                                break;
-                            }
-                        case "video":
-                            {
-                                recMsg = new RecVideoMsg { ThumbMediaId = dict["ThumbMediaId"], MediaId = dict["MediaId"] };
-                                break;
-                            }
-                        case "location":
-                            {
-                                recMsg = new RecLocationMsg { Label = dict["Label"], Location_X = double.Parse(dict["Location_X"]), Location_Y = double.Parse(dict["Location_Y"]), Scale = int.Parse(dict["Scale"]) };
-                                break;
-                            }
-                        case "link":
-                            {
-                                recMsg = new RecLinkMsg { Description = dict["Description"], Title = dict["Title"], Url = dict["Url"] };
-                                break;
-                            }
-                        default:
-                            return ReplyEmptyMsg.Instance;
-                    }
-                    recMsg.MsgId = Int64.Parse(dict["MsgId"]);
-                    recEvMsg = recMsg;
-                    #endregion
-                }
-                else
-                {
-                    return ReplyEmptyMsg.Instance;
-                }
-                recEvMsg.CreateTime = Int64.Parse(dict["CreateTime"]);
-                recEvMsg.FromUserName = dict["FromUserName"];
-                recEvMsg.ToUserName = dict["ToUserName"];
-
-                return hander(recEvMsg);
+                #endregion
             }
-            catch
+            else if (dict.ContainsKey("MsgId"))
+            {
+                #region 接收普通消息
+                RecBaseMsg recMsg = null;
+                var msgType = (MsgType)Enum.Parse(typeof(MsgType), dict["MsgType"]);
+                key = msgType.ToString();
+                switch (msgType)
+                {
+                    case MsgType.text:
+                        {
+                            recMsg = new RecTextMsg { Content = dict["Content"] };
+                            break;
+                        }
+                    case MsgType.image:
+                        {
+
+                            recMsg = new RecImageMsg { PicUrl = dict["PicUrl"], MediaId = dict["MediaId"] };
+                            break;
+                        }
+                    case MsgType.voice:
+                        {
+                            string recognition;
+                            dict.TryGetValue("Recognition", out recognition);
+                            recMsg = new RecVoiceMsg { Format = dict["Format"], MediaId = dict["MediaId"], Recognition = recognition };
+                            break;
+                        }
+                    case MsgType.video:
+                        {
+                            recMsg = new RecVideoMsg { ThumbMediaId = dict["ThumbMediaId"], MediaId = dict["MediaId"] };
+                            break;
+                        }
+                    case MsgType.location:
+                        {
+                            recMsg = new RecLocationMsg { Label = dict["Label"], Location_X = double.Parse(dict["Location_X"]), Location_Y = double.Parse(dict["Location_Y"]), Scale = int.Parse(dict["Scale"]) };
+                            break;
+                        }
+                    case MsgType.link:
+                        {
+                            recMsg = new RecLinkMsg { Description = dict["Description"], Title = dict["Title"], Url = dict["Url"] };
+                            break;
+                        }
+                    default:
+                        return ReplyEmptyMsg.Instance;
+                }
+                recMsg.MsgId = Int64.Parse(dict["MsgId"]);
+                recEvMsg = recMsg;
+                #endregion
+            }
+            else
             {
                 return ReplyEmptyMsg.Instance;
             }
+            recEvMsg.CreateTime = Int64.Parse(dict["CreateTime"]);
+            recEvMsg.FromUserName = dict["FromUserName"];
+            recEvMsg.ToUserName = dict["ToUserName"];
+            if (m_msgHandlers.ContainsKey(key))
+            {
+                var repMsg = m_msgHandlers[key](recEvMsg);
+                if (repMsg.CreateTime == 0)
+                {
+                    repMsg.CreateTime = DateTime.Now.Ticks;
+                }
+                if (string.IsNullOrEmpty(repMsg.FromUserName))
+                {
+                    repMsg.FromUserName = recEvMsg.ToUserName;
+                }
+                if (string.IsNullOrEmpty(repMsg.ToUserName))
+                {
+                    repMsg.ToUserName = recEvMsg.FromUserName;
+                }
+                return repMsg;
+            }
+            else
+            {
+                return ReplyEmptyMsg.Instance;
+            }
+        }
+
+        public static Dictionary<string, Func<RecEventBaseMsg, ReplyBaseMsg>> m_msgHandlers = new Dictionary<string, Func<RecEventBaseMsg, ReplyBaseMsg>>();
+        /// <summary>
+        /// 注册消息处理程序
+        /// </summary>
+        /// <typeparam name="TMsg"></typeparam>
+        /// <param name="handler"></param>
+        public static void RegisterMsgHandler<TMsg>(Func<TMsg, ReplyBaseMsg> handler) where TMsg : RecBaseMsg
+        {
+            var type = typeof(TMsg);
+            var key = string.Empty;
+            if (type == typeof(RecTextMsg))
+            {
+                key = MsgType.text.ToString();
+            }
+            else if (type == typeof(RecImageMsg))
+            {
+                key = MsgType.image.ToString();
+            }
+            else if (type == typeof(RecLinkMsg))
+            {
+                key = MsgType.link.ToString();
+            }
+            else if (type == typeof(RecLocationMsg))
+            {
+                key = MsgType.location.ToString();
+            }
+            else if (type == typeof(RecVideoMsg))
+            {
+                key = MsgType.video.ToString();
+            }
+            else if (type == typeof(RecVoiceMsg))
+            {
+                key = MsgType.voice.ToString();
+            }
+            else
+            {
+                return;
+            }
+            m_msgHandlers[key] = (Func<RecEventBaseMsg, ReplyBaseMsg>)handler;
+        }
+        /// <summary>
+        /// 注册事件处理程序
+        /// </summary>
+        /// <typeparam name="TEvent"></typeparam>
+        /// <param name="handler"></param>
+        public static void RegisterEventHandler<TEvent>(Func<TEvent, ReplyBaseMsg> handler) where TEvent : EventBaseMsg
+        {
+            var type = typeof(TEvent);
+            var key = MsgType.Event.ToString() + "_";
+            if (type == typeof(EventClickMsg))
+            {
+                key += MyEventType.Click.ToString();
+            }
+            else if (type == typeof(EventFansScanMsg))
+            {
+                key += MyEventType.FansScan.ToString();
+            }
+            else if (type == typeof(EventAttendMsg))
+            {
+                key += MyEventType.Attend.ToString();
+            }
+            else if (type == typeof(EventLocationMsg))
+            {
+                key += MyEventType.Location.ToString();
+            }
+            else if (type == typeof(EventUnattendMsg))
+            {
+                key += MyEventType.Unattend.ToString();
+            }
+            else if (type == typeof(EventUserScanMsg))
+            {
+                key += MyEventType.UserScan.ToString();
+            }
+            else
+            {
+                return;
+            }
+            m_msgHandlers[key] = (Func<RecEventBaseMsg, ReplyBaseMsg>)handler;
         }
 
         /// <summary>
