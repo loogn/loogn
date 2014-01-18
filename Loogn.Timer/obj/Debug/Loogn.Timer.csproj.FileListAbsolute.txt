@@ -15,4 +15,4 @@ E:\BaBaiNew\Program\dll\Loogn.Timer.pdb
 E:\dll\Loogn.Timer.dll.config
 E:\dll\Loogn.Timer.dll
 E:\dll\Loogn.Timer.pdb
-E:\loogn\Loogn.Timer\obj\Debug\ResolveAssemblyReference.cache
+E:\Loogn\Loogn.Timer\obj\Debug\Loogn.Timer.csprojResolveAssemblyReference.cache

@@ -13,4 +13,4 @@ E:\BaBaiNew\Program\loogn\BuildTreeDict\bin\Debug\Loogn.TreeSpliter.pdb
 E:\BaBaiNew\Program\loogn\BuildTreeDict\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\BaBaiNew\Program\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.exe
 E:\BaBaiNew\Program\loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.pdb
-E:\loogn\BuildTreeDict\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Loogn\BuildTreeDict\obj\x86\Debug\BuildTreeDict.csprojResolveAssemblyReference.cache

@@ -15,4 +15,4 @@ E:\BaBaiNew\Program\loogn\WebTest\bin\Loogn.DB.pdb
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\WebTest.dll
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\WebTest.pdb
-E:\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
+E:\Loogn\WebTest\obj\Debug\WebTest.csprojResolveAssemblyReference.cache

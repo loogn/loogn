@@ -10,7 +10,6 @@ namespace Loogn.WeiXinSDK
 {
     public class WeiXin
     {
-
         static string AppID, AppSecret;
         /// <summary>
         /// 设置全局appId和appSecret,一般只用在应用程序启动时调用一次即可
@@ -23,6 +22,12 @@ namespace Loogn.WeiXinSDK
             AppSecret = appSecret;
         }
 
+        /// <summary>
+        /// 得到AccessToken
+        /// </summary>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
         public static string GetAccessToken(string appId, string appSecret)
         {
             return Credential.GetCredential(appId, appSecret).access_token;
@@ -47,6 +52,8 @@ namespace Loogn.WeiXinSDK
             string strResult = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(tmpStr, "SHA1");
             return signature.Equals(strResult, StringComparison.InvariantCultureIgnoreCase);
         }
+
+        #region 消息
 
         /// <summary>
         /// 处理用户消息和事件
@@ -203,6 +210,10 @@ namespace Loogn.WeiXinSDK
             return SendMsg(msg, AppID, AppSecret);
         }
 
+        #endregion
+
+        #region 自定义菜单
+
         /// <summary>
         /// 创建自定义菜单
         /// </summary>
@@ -268,6 +279,10 @@ namespace Loogn.WeiXinSDK
             return DeleteMenu(AppID, AppSecret);
         }
 
+        #endregion
+
+        #region 二维码
+
         /// <summary>
         /// 创建二维码ticket
         /// </summary>
@@ -311,11 +326,14 @@ namespace Loogn.WeiXinSDK
             return CreateQRCode(isTemp, scene_id, AppID, AppSecret);
         }
 
-
         public static string GetQRUrl(string qrcodeTicket)
         {
             return "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + System.Web.HttpUtility.HtmlEncode(qrcodeTicket);
         }
+
+        #endregion
+
+        #region 获取关注者列表
 
         /// <summary>
         /// 获取关注者列表
@@ -345,6 +363,7 @@ namespace Loogn.WeiXinSDK
                 return Util.JsonTo<Followers>(json);
             }
         }
+
         public static Followers GetFollowers(string next_openid)
         {
             CheckGlobalCredential();
@@ -395,7 +414,17 @@ namespace Loogn.WeiXinSDK
             return GetAllFollowers(AppID, AppSecret);
         }
 
+        #endregion
 
+        #region 用户信息
+        /// <summary>
+        /// 得到用户基本信息
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="lang"></param>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
         public static UserInfo GetUserInfo(string openid, LangType lang, string appId, string appSecret)
         {
             string url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=";
@@ -421,6 +450,237 @@ namespace Loogn.WeiXinSDK
             CheckGlobalCredential();
             return GetUserInfo(openid, lang, AppID, AppSecret);
         }
+
+        #endregion
+
+        #region 分组
+
+        /// <summary>
+        /// 创建分组
+        /// </summary>
+        /// <param name="name">分组名字（30个字符以内）</param>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
+        public static GroupInfo CreateGroup(string name, string appId, string appSecret)
+        {
+            string url = "https://api.weixin.qq.com/cgi-bin/groups/create?access_token=";
+            string access_token = GetAccessToken(appId, appSecret);
+            url = url + access_token;
+            var post = "{\"group\":{\"name\":\"" + name + "\"}}";
+            var json = Util.HttpPost2(url, post);
+            if (json.IndexOf("errcode") > 0)
+            {
+                var gi = new GroupInfo();
+                gi.error = Util.JsonTo<ReturnCode>(json);
+                return gi;
+            }
+            else
+            {
+                var dict = Util.JsonTo<Dictionary<string, Dictionary<string, object>>>(json);
+                var gi = new GroupInfo();
+                var gpdict = dict["group"];
+                gi.id = Convert.ToInt32(gpdict["id"]);
+                gi.name = gpdict["name"].ToString();
+                return gi;
+            }
+        }
+
+        public static GroupInfo CreateGroup(string name)
+        {
+            CheckGlobalCredential();
+            return CreateGroup(name, AppID, AppSecret);
+        }
+
+        /// <summary>
+        /// 查询所有分组
+        /// </summary>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
+        public static Groups GetGroups(string appId, string appSecret)
+        {
+            string url = "https://api.weixin.qq.com/cgi-bin/groups/get?access_token=";
+            string access_token = GetAccessToken(appId, appSecret);
+            url = url + access_token;
+            string json = Util.HttpGet2(url);
+            if (json.IndexOf("errcode") > 0)
+            {
+                var gs = new Groups();
+                gs.error = Util.JsonTo<ReturnCode>(json);
+                return gs;
+            }
+            else
+            {
+                var dict = Util.JsonTo<Dictionary<string, List<Dictionary<string, object>>>>(json);
+                var gs = new Groups();
+                var gilist = dict["groups"];
+                foreach (var gidict in gilist)
+                {
+                    var gi = new GroupInfo();
+                    gi.name = gidict["name"].ToString();
+                    gi.id = Convert.ToInt32(gidict["id"]);
+                    gi.count = Convert.ToInt32(gidict["count"]);
+                    gs.Add(gi);
+                }
+                return gs;
+            }
+        }
+
+        public static Groups GetGroups()
+        {
+            CheckGlobalCredential();
+            return GetGroups(AppID, AppSecret);
+        }
+
+        /// <summary>
+        /// 查询用户所在分组
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
+        public static GroupID GetUserGroup(string openid, string appId, string appSecret)
+        {
+            string url = "https://api.weixin.qq.com/cgi-bin/groups/getid?access_token=";
+            string access_token = GetAccessToken(appId, appSecret);
+            url = url + access_token;
+            var post = "{\"openid\":\"" + openid + "\"}";
+            var json = Util.HttpPost2(url, post);
+            if (json.IndexOf("errcode") > 0)
+            {
+                var gid = new GroupID();
+                gid.error = Util.JsonTo<ReturnCode>(json);
+                return gid;
+            }
+            else
+            {
+                var dict = Util.JsonTo<Dictionary<string, int>>(json);
+                var gid = new GroupID();
+                gid.id = dict["groupid"];
+                return gid;
+            }
+        }
+
+        public static GroupID GetUserGroup(string openid)
+        {
+            CheckGlobalCredential();
+            return GetUserGroup(openid, AppID, AppSecret);
+        }
+
+        /// <summary>
+        /// 修改分组名
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
+        public static ReturnCode UpdateGroup(int id, string name, string appId, string appSecret)
+        {
+            string url = "https://api.weixin.qq.com/cgi-bin/groups/update?access_token=";
+            string access_token = GetAccessToken(appId, appSecret);
+            url = url + access_token;
+            var post = "{\"group\":{\"id\":" + id + ",\"name\":\"" + name + "\"}}";
+            var json = Util.HttpPost2(url, post);
+            return Util.JsonTo<ReturnCode>(json);
+        }
+
+        public static ReturnCode UpdateGroup(int id, string name)
+        {
+            CheckGlobalCredential();
+            return UpdateGroup(id, name, AppID, AppSecret);
+        }
+        /// <summary>
+        /// 移动用户分组
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="groupid"></param>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
+        public static ReturnCode MoveGroup(string openid, int groupid, string appId, string appSecret)
+        {
+            string url = "https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token=";
+            string access_token = GetAccessToken(appId, appSecret);
+            url = url + access_token;
+            var post = "{\"openid\":\"" + openid + "\",\"to_groupid\":" + groupid + "}";
+            var json = Util.HttpPost2(url, post);
+            return Util.JsonTo<ReturnCode>(json);
+        }
+
+        #endregion
+
+        #region 多媒体文件
+        /// <summary>
+        /// 上传多媒体文件
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="type"></param>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
+        public static MediaInfo UploadMedia(string file, MediaType type, string appId, string appSecret)
+        {
+            string url = "http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=";
+            string access_token = GetAccessToken(appId, appSecret);
+            url = url + access_token + "&type=" + type.ToString();
+            var json = Util.HttpUpload(url, file);
+            if (json.IndexOf("errcode") > 0)
+            {
+                var mi = new MediaInfo();
+                mi.error = Util.JsonTo<ReturnCode>(json);
+                return mi;
+            }
+            else
+            {
+                return Util.JsonTo<MediaInfo>(json);
+            }
+        }
+
+        public static MediaInfo UploadMedia(string file, MediaType type)
+        {
+            CheckGlobalCredential();
+            return UploadMedia(file, type, AppID, AppSecret);
+        }
+
+        /// <summary>
+        /// 下载多媒体文件
+        /// </summary>
+        /// <param name="media_id"></param>
+        /// <param name="appId"></param>
+        /// <param name="appSecret"></param>
+        /// <returns></returns>
+        public static DownloadFile DownloadMedia(string media_id, string appId, string appSecret)
+        {
+            string url = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=";
+            string access_token = GetAccessToken(appId, appSecret);
+            url = url + access_token + "&media_id=" + media_id;
+            var tup = Util.HttpGet(url);
+            var dm = new DownloadFile();
+            dm.ContentType = tup.Item2;
+            
+            if (tup.Item1 == null)
+            {
+                dm.error = Util.JsonTo<ReturnCode>(tup.Item3);
+            }
+            else
+            {
+                dm.Stream = tup.Item1;
+            }
+            return dm;
+        }
+
+        public static DownloadFile DownloadMedia(string media_id)
+        {
+            CheckGlobalCredential();
+            return DownloadMedia(media_id, AppID, AppSecret);
+        }
+
+        #endregion
+
+        #region 授权获取用户基本信息 ????????????
+        #endregion
 
         private static void CheckGlobalCredential()
         {

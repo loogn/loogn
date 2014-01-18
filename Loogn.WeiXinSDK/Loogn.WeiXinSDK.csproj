@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Loogn.WeiXinSDK</RootNamespace>
     <AssemblyName>Loogn.WeiXinSDK</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -43,8 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Credential.cs" />
+    <Compile Include="DownloadFile.cs" />
     <Compile Include="Followers.cs" />
+    <Compile Include="GroupInfo.cs" />
     <Compile Include="LangType.cs" />
+    <Compile Include="MediaInfo.cs" />
     <Compile Include="Menu\BaseButton.cs" />
     <Compile Include="Menu\ClickButton.cs" />
     <Compile Include="Menu\CustomMenu.cs" />

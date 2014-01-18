@@ -11,4 +11,4 @@ E:\BaBaiNew\Program\dll\Loogn.Common.dll
 E:\BaBaiNew\Program\dll\Loogn.Common.pdb
 E:\dll\Loogn.Common.dll
 E:\dll\Loogn.Common.pdb
-E:\loogn\Loogn.Common\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.csprojResolveAssemblyReference.cache

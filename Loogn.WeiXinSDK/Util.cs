@@ -6,17 +6,19 @@ using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
 using System.Xml;
+using System.Web.UI;
 
 namespace Loogn.WeiXinSDK
 {
     class Util
     {
-        public static Stream HttpPost(string action, byte[] data,bool multi)
+        #region Http
+        public static Stream HttpPost(string action, byte[] data)
         {
             HttpWebRequest myRequest;
             myRequest = WebRequest.Create(action) as HttpWebRequest;
             myRequest.Method = "POST";
-            myRequest.ContentType = multi?"multipart/form-data": "application/x-www-form-urlencoded";
+            myRequest.ContentType = "application/x-www-form-urlencoded";
             myRequest.ContentLength = data.Length;
             using (Stream newStream = myRequest.GetRequestStream())
             {
@@ -24,11 +26,6 @@ namespace Loogn.WeiXinSDK
             }
             HttpWebResponse myResponse = myRequest.GetResponse() as HttpWebResponse;
             return myResponse.GetResponseStream();
-        }
-
-        public static Stream HttpPost(string action, byte[] data)
-        {
-            return HttpPost(action, data, false);
         }
         public static string HttpPost2(string action, string data)
         {
@@ -41,22 +38,86 @@ namespace Loogn.WeiXinSDK
             }
         }
 
-        public static Stream HttpGet(string action)
+        public static string HttpUpload(string action, string file)
+        {
+            string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
+            HttpWebRequest myRequest = WebRequest.Create(action) as HttpWebRequest;
+            myRequest.Method = "POST";
+            myRequest.ContentType = "multipart/form-data;boundary=" + boundary;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("--" + boundary);
+            sb.Append("\r\n");
+            sb.Append("Content-Disposition: form-data; name=\"media\"; filename=\"" + file + "\"");
+            sb.Append("\r\n");
+            sb.Append("Content-Type: application/octet-stream");
+            sb.Append("\r\n\r\n");
+            string head = sb.ToString();
+            long length = 0;
+            byte[] form_data = Encoding.UTF8.GetBytes(head);
+            byte[] foot_data = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--\r\n");
+            length = form_data.Length + foot_data.Length;
+
+            using (FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read))
+            {
+                length += fileStream.Length;
+                myRequest.ContentLength = length;
+                Stream requestStream = myRequest.GetRequestStream();
+                requestStream.Write(form_data, 0, form_data.Length);
+
+                byte[] buffer = new Byte[checked((uint)Math.Min(4096, (int)fileStream.Length))];
+                int bytesRead = 0;
+                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+                    requestStream.Write(buffer, 0, bytesRead);
+                requestStream.Write(foot_data, 0, foot_data.Length);
+            }
+            HttpWebResponse myResponse = myRequest.GetResponse() as HttpWebResponse;
+            StreamReader sr = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
+            string json = sr.ReadToEnd().Trim();
+            sr.Close();
+            if (myResponse != null)
+            {
+                myResponse.Close();
+                myRequest = null;
+            }
+            if (myRequest != null)
+            {
+                myRequest = null;
+            }
+            return json;
+        }
+
+        public static Tuple<Stream, string, string> HttpGet(string action)
         {
             HttpWebRequest myRequest = WebRequest.Create(action) as HttpWebRequest;
             myRequest.Method = "GET";
             HttpWebResponse myResponse = myRequest.GetResponse() as HttpWebResponse;
-            return myResponse.GetResponseStream();
-        }
-        public static string HttpGet2(string action)
-        {
-            using (var stream = Util.HttpGet(action))
+            var stream = myResponse.GetResponseStream();
+            var ct = myResponse.ContentType;
+            if (ct.IndexOf("json") >=0 || ct.IndexOf("text")>=0)
             {
-                StreamReader sr = new StreamReader(stream);
-                var data = sr.ReadToEnd();
-                return data;
+                using (StreamReader sr = new StreamReader(stream))
+                {
+                    var json = sr.ReadToEnd();
+                    return new Tuple<Stream, string, string>(null, ct, json);
+                }
+            }
+            else
+            {
+                Stream MyStream = new MemoryStream();
+                byte[] buffer = new Byte[4096];
+                int bytesRead = 0;
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+                    MyStream.Write(buffer, 0, bytesRead);
+                MyStream.Position = 0;
+                return new Tuple<Stream, string, string>(MyStream, ct, string.Empty);
             }
         }
+
+        public static string HttpGet2(string action)
+        {
+            return Util.HttpGet(action).Item3;
+        }
+        #endregion
 
         #region json
         static JavaScriptSerializer GetJSS()
