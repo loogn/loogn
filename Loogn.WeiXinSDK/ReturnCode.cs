@@ -13,10 +13,6 @@ namespace Loogn.WeiXinSDK
     {
         public int errcode { get; set; }
         public string errmsg { get; set; }
-        public static ReturnCode JsonTo(string json)
-        {
-            return Util.JsonTo<ReturnCode>(json);
-        }
         public override string ToString()
         {
             return "{ \"errcode\":" + errcode + ",\"errmsg\":\"" + errmsg + "\"}";

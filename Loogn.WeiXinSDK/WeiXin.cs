@@ -16,7 +16,7 @@ namespace Loogn.WeiXinSDK
         /// </summary>
         /// <param name="appId"></param>
         /// <param name="appSecret"></param>
-        public static void SetGlobalCredential(string appId, string appSecret)
+        public static void ConfigGlobalCredential(string appId, string appSecret)
         {
             AppID = appId;
             AppSecret = appSecret;
@@ -30,7 +30,7 @@ namespace Loogn.WeiXinSDK
         /// <returns></returns>
         public static string GetAccessToken(string appId, string appSecret)
         {
-            return Credential.GetCredential(appId, appSecret).access_token;
+            return Credential.GetCredential(appId, appSecret).access_token ?? string.Empty;
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace Loogn.WeiXinSDK
             var json = msg.GetJSON();
 
             var retJson = Util.HttpPost2(url, json);
-            return ReturnCode.JsonTo(retJson);
+            return Util.JsonTo<ReturnCode>(retJson);
         }
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace Loogn.WeiXinSDK
             url = url + access_token;
             var json = menu.GetJSON();
             var retJson = Util.HttpPost2(url, json);
-            return ReturnCode.JsonTo(retJson);
+            return Util.JsonTo<ReturnCode>(retJson);
         }
 
         public static ReturnCode CreateMenu(CustomMenu menu)
@@ -364,7 +364,7 @@ namespace Loogn.WeiXinSDK
             string access_token = GetAccessToken(appId, appSecret);
             url = url + access_token;
             var json = Util.HttpGet2(url);
-            return ReturnCode.JsonTo(json);
+            return Util.JsonTo<ReturnCode>(json);
         }
 
         public static ReturnCode DeleteMenu()

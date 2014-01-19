@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 
 namespace Loogn.WeiXinSDK
 {
     /// <summary>
     /// 凭据
     /// </summary>
-    [Serializable]
     class Credential
     {
         public string access_token { get; set; }
@@ -18,8 +14,9 @@ namespace Loogn.WeiXinSDK
         /// </summary>
         public int expires_in { get; set; }
 
-        [NonSerialized]
-        public DateTime add_time;
+        public DateTime add_time { get; set; }
+
+        public ReturnCode error { get; set; }
 
         static Dictionary<string, Credential> creds = new Dictionary<string, Credential>();
         static string TokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
@@ -39,7 +36,16 @@ namespace Loogn.WeiXinSDK
                 }
             }
             var json = Util.HttpGet2(string.Format(TokenUrl, appId, appSecret));
-            cred = Util.JsonTo<Credential>(json);
+            if (json.IndexOf("errcode") >= 0)
+            {
+                cred = new Credential();
+                cred.error = Util.JsonTo<ReturnCode>(json);
+            }
+            else
+            {
+                cred = Util.JsonTo<Credential>(json);
+                creds[appId] = cred;
+            }
             return cred;
         }
     }
