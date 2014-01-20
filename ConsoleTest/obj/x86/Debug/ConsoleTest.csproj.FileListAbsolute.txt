@@ -21,4 +21,4 @@ E:\Loogn\ConsoleTest\bin\Debug\log4net.dll
 E:\Loogn\ConsoleTest\bin\Debug\log4net.xml
 E:\loogn\ConsoleTest\bin\Debug\Loogn.WeiXinSDK.dll
 E:\loogn\ConsoleTest\bin\Debug\Loogn.WeiXinSDK.pdb
-E:\Loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
+E:\loogn\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache

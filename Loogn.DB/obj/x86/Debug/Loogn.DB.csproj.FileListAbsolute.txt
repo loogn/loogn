@@ -11,4 +11,4 @@ E:\loogn\Loogn.DB\bin\Debug\Loogn.DB.dll
 E:\loogn\Loogn.DB\bin\Debug\Loogn.DB.pdb
 E:\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.dll
 E:\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.pdb
-E:\Loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.csprojResolveAssemblyReference.cache
+E:\loogn\Loogn.DB\obj\x86\Debug\ResolveAssemblyReference.cache

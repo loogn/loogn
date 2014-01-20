@@ -21,32 +21,23 @@ namespace ConsoleTest
         public int Length { get; set; }
     }
 
+    public class P
+    { 
+    
+    }
+    public class SP : P
+    { }
+
     public class Program
     {
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
         //jjoobb2008
 
+ 
+
         static void Main(string[] args)
         {
-            WeiXin.ConfigGlobalCredential("wx344ac22d559aec2b", "08e16d4561df55dd770f0a56d0f08a60");
-
-            var qrcode = WeiXin.CreateQRCode(true, 23);
-            if (qrcode.error == null)
-            {
-                //返回错误，可以用qrcode.error查看错误消息
-            }
-            else
-            { 
-                //返回正确，可以操作qrcode.ticket
-            }
-            /*{
-    "group": {
-        "id": 107, 
-        "name": "test"
-    }
-}*/
-
-
+            TT<SP>(new SP());
 
             return;
 
