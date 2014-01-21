@@ -12,7 +12,8 @@ using MongoDB.Bson;
 using Loogn.Common.Aspect;
 using System.ComponentModel;
 using System.Net.Sockets;
-using Loogn.WeiXinSDK;
+
+using System.Xml;
 namespace ConsoleTest
 {
     public class Edge
@@ -33,11 +34,34 @@ namespace ConsoleTest
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
         //jjoobb2008
 
- 
+        public static Dictionary<string, string> GetDictFromXml(string xml)
+        {
+            
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            {
+                dict.Add(node.Name, node.InnerText.Trim());
+            }
+            return dict;
+        }
+
 
         static void Main(string[] args)
         {
-            TT<SP>(new SP());
+
+            var xml = @"<xml><ToUserName><![CDATA[gh_a97acd3e54eb]]></ToUserName>
+<FromUserName><![CDATA[o5nvljqxq-J513ZK2ajDW12wIrGA]]></FromUserName>
+<CreateTime>1390271120</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>";
+
+            var dict = GetDictFromXml(xml);
+
+            Console.WriteLine(dict.Count);
 
             return;
 
@@ -75,22 +99,6 @@ namespace ConsoleTest
             //Console.WriteLine(rd.ToString());
             #endregion
 
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-            dict.Add("1", 1);
-            dict.Add("2", 2);
-            List<string> keys = new List<string>();
-            foreach (var kv in dict)
-            {
-                if (kv.Value == 1)
-                {
-                    keys.Add(kv.Key);
-                }
-            }
-            foreach (var key in keys)
-            {
-                dict.Remove(key);
-            }
-            Console.WriteLine(dict.Count);
 
         }
     }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using Loogn.WeiXinSDK.Message;
 using Loogn.WeiXinSDK.Menu;
+using Loogn.WeiXinSDK.Message;
 
 namespace Loogn.WeiXinSDK
 {
+    public delegate TResult MyFunc<T1,TResult>(T1 t);
     public class WeiXin
     {
         static string AppID, AppSecret;
@@ -78,32 +77,31 @@ namespace Loogn.WeiXinSDK
             {
                 #region 接收事件消息
                 var evt = (EventType)Enum.Parse(typeof(EventType), dict["Event"]);
-                key = MsgType.Event.ToString() + "_" + evt.ToString();
-
+                key = MsgType.Event.ToString() + "_";
                 switch (evt)
                 {
                     case EventType.CLICK:
                         {
                             var msg = new EventClickMsg { CreateTime = Int64.Parse(dict["CreateTime"]), FromUserName = dict["FromUserName"], ToUserName = dict["ToUserName"], MyEventType = MyEventType.Click, EventKey = dict["EventKey"] };
-                            replyMsg = GetReply<EventClickMsg>(key, msg);
+                            replyMsg = GetReply<EventClickMsg>(key+MyEventType.Click.ToString() , msg);
                             break;
                         }
                     case EventType.LOCATION:
                         {
                             var msg = new EventLocationMsg { CreateTime = Int64.Parse(dict["CreateTime"]), FromUserName = dict["FromUserName"], ToUserName = dict["ToUserName"], MyEventType = MyEventType.Location, Latitude = double.Parse(dict["Latitude"]), Longitude = double.Parse(dict["Longitude"]), Precision = double.Parse(dict["Precision"]) };
-                            replyMsg = GetReply<EventLocationMsg>(key, msg);
+                            replyMsg = GetReply<EventLocationMsg>(key+MyEventType.Location.ToString(), msg);
                             break;
                         }
                     case EventType.scan:
                         {
                             var msg = new EventFansScanMsg { CreateTime = Int64.Parse(dict["CreateTime"]), FromUserName = dict["FromUserName"], ToUserName = dict["ToUserName"], MyEventType = MyEventType.FansScan, EventKey = dict["EventKey"], Ticket = dict["Ticket"] };
-                            replyMsg = GetReply<EventFansScanMsg>(key, msg);
+                            replyMsg = GetReply<EventFansScanMsg>(key+MyEventType.FansScan.ToString(), msg);
                             break;
                         }
                     case EventType.unsubscribe:
                         {
                             var msg = new EventUnattendMsg { CreateTime = Int64.Parse(dict["CreateTime"]), FromUserName = dict["FromUserName"], ToUserName = dict["ToUserName"], MyEventType = MyEventType.Unattend };
-                            replyMsg = GetReply<EventUnattendMsg>(key, msg);
+                            replyMsg = GetReply<EventUnattendMsg>(key+MyEventType.Unattend.ToString(), msg);
                             break;
                         }
                     case EventType.subscribe:
@@ -111,12 +109,12 @@ namespace Loogn.WeiXinSDK
                             if (dict.ContainsKey("Ticket"))
                             {
                                 var msg = new EventUserScanMsg { CreateTime = Int64.Parse(dict["CreateTime"]), FromUserName = dict["FromUserName"], ToUserName = dict["ToUserName"], MyEventType = MyEventType.UserScan, Ticket = dict["Ticket"], EventKey = dict["EventKey"] };
-                                replyMsg = GetReply<EventUserScanMsg>(key, msg);
+                                replyMsg = GetReply<EventUserScanMsg>(key+MyEventType.UserScan.ToString(), msg);
                             }
                             else
                             {
                                 var msg = new EventAttendMsg { CreateTime = Int64.Parse(dict["CreateTime"]), FromUserName = dict["FromUserName"], ToUserName = dict["ToUserName"], MyEventType = MyEventType.Attend };
-                                replyMsg = GetReply<EventAttendMsg>(key, msg);
+                                replyMsg = GetReply<EventAttendMsg>(key + MyEventType.Attend.ToString(), msg);
                             }
                             break;
                         }
@@ -182,7 +180,7 @@ namespace Loogn.WeiXinSDK
         /// </summary>
         /// <typeparam name="TMsg"></typeparam>
         /// <param name="handler"></param>
-        public static void RegisterMsgHandler<TMsg>(Func<TMsg, ReplyBaseMsg> handler) where TMsg : RecBaseMsg
+        public static void RegisterMsgHandler<TMsg>(MyFunc<TMsg, ReplyBaseMsg> handler) where TMsg : RecBaseMsg
         {
             var type = typeof(TMsg);
             var key = string.Empty;
@@ -221,7 +219,7 @@ namespace Loogn.WeiXinSDK
         /// </summary>
         /// <typeparam name="TEvent"></typeparam>
         /// <param name="handler"></param>
-        public static void RegisterEventHandler<TEvent>(Func<TEvent, ReplyBaseMsg> handler) where TEvent : EventBaseMsg
+        public static void RegisterEventHandler<TEvent>(MyFunc<TEvent, ReplyBaseMsg> handler) where TEvent : EventBaseMsg
         {
             var type = typeof(TEvent);
             var key = MsgType.Event.ToString() + "_";
@@ -258,13 +256,14 @@ namespace Loogn.WeiXinSDK
 
         static ReplyBaseMsg GetReply<TMsg>(string key, TMsg msg) where TMsg : RecEventBaseMsg
         {
+            key = key.ToLower();
             if (m_msgHandlers.ContainsKey(key))
             {
-                var handler = m_msgHandlers[key] as Func<TMsg, ReplyBaseMsg>;
+                var handler = m_msgHandlers[key] as MyFunc<TMsg, ReplyBaseMsg>;
                 var replyMsg = handler(msg);
                 if (replyMsg.CreateTime == 0) replyMsg.CreateTime = DateTime.Now.Ticks;
                 if (string.IsNullOrEmpty(replyMsg.FromUserName)) replyMsg.FromUserName = msg.ToUserName;
-                if (string.IsNullOrEmpty(replyMsg.ToUserName)) replyMsg.FromUserName = msg.FromUserName;
+                if (string.IsNullOrEmpty(replyMsg.ToUserName)) replyMsg.ToUserName = msg.FromUserName;
                 return replyMsg;
             }
             else
