@@ -1,17 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Threading;
-using System.Diagnostics;
-using System.Data.Common;
-using System.Collections.Generic;
-using System.Linq;
-using MongoDB.Driver;
-using System.Text;
-using Loogn.Common;
-using MongoDB.Bson;
-using Loogn.Common.Aspect;
-using System.ComponentModel;
-using System.Net.Sockets;
+﻿using System.Collections.Generic;
 
 using System.Xml;
 namespace ConsoleTest
@@ -50,18 +37,7 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
-
-            var xml = @"<xml><ToUserName><![CDATA[gh_a97acd3e54eb]]></ToUserName>
-<FromUserName><![CDATA[o5nvljqxq-J513ZK2ajDW12wIrGA]]></FromUserName>
-<CreateTime>1390271120</CreateTime>
-<MsgType><![CDATA[event]]></MsgType>
-<Event><![CDATA[subscribe]]></Event>
-<EventKey><![CDATA[]]></EventKey>
-</xml>";
-
-            var dict = GetDictFromXml(xml);
-
-            Console.WriteLine(dict.Count);
+          
 
             return;
 

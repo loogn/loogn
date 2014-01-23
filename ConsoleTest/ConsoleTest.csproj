@@ -113,7 +113,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="jquery\jquery-1.10.2.min.map" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.txt" />
