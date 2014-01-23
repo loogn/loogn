@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loogn.DB", "Loogn.DB\Loogn.DB.csproj", "{A1BEE895-21F8-4166-A430-7813EDA6EF41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loogn.Timer", "Loogn.Timer\Loogn.Timer.csproj", "{E53F44FF-EE5B-4A42-8376-EBE673875B71}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTest", "WebTest\WebTest.csproj", "{C7CE7210-29E3-4717-A262-16F512DDCC9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetServer", "NuGetServer\NuGetServer.csproj", "{814507EB-4D4B-4464-9C2A-57DE4C5FACC1}"
@@ -59,16 +57,6 @@ Global
 		{A1BEE895-21F8-4166-A430-7813EDA6EF41}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A1BEE895-21F8-4166-A430-7813EDA6EF41}.Release|x86.ActiveCfg = Release|x86
 		{A1BEE895-21F8-4166-A430-7813EDA6EF41}.Release|x86.Build.0 = Release|x86
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{E53F44FF-EE5B-4A42-8376-EBE673875B71}.Release|x86.ActiveCfg = Release|Any CPU
 		{C7CE7210-29E3-4717-A262-16F512DDCC9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7CE7210-29E3-4717-A262-16F512DDCC9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7CE7210-29E3-4717-A262-16F512DDCC9F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

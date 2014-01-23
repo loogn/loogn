@@ -1,5 +1,0 @@
-E:\loogn\Papillon\bin\Debug\Papillon.dll
-E:\loogn\Papillon\bin\Debug\Papillon.pdb
-E:\loogn\Papillon\obj\Debug\ResolveAssemblyReference.cache
-E:\loogn\Papillon\obj\Debug\Papillon.dll
-E:\loogn\Papillon\obj\Debug\Papillon.pdb
