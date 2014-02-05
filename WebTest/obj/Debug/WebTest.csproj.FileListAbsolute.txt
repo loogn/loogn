@@ -16,3 +16,12 @@ E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\WebTest.dll
 E:\BaBaiNew\Program\loogn\WebTest\obj\Debug\WebTest.pdb
 E:\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
+E:\github\loogn\WebTest\bin\WebTest.dll
+E:\github\loogn\WebTest\bin\WebTest.pdb
+E:\github\loogn\WebTest\bin\Loogn.Common.dll
+E:\github\loogn\WebTest\bin\Loogn.DB.dll
+E:\github\loogn\WebTest\bin\Loogn.Common.pdb
+E:\github\loogn\WebTest\bin\Loogn.DB.pdb
+E:\github\loogn\WebTest\obj\Debug\ResolveAssemblyReference.cache
+E:\github\loogn\WebTest\obj\Debug\WebTest.dll
+E:\github\loogn\WebTest\obj\Debug\WebTest.pdb

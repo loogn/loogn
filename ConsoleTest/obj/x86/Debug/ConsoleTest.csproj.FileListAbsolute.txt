@@ -20,3 +20,14 @@ E:\BaBaiNew\Program\loogn\ConsoleTest\bin\Debug\log4net.xml
 E:\Loogn\ConsoleTest\bin\Debug\log4net.dll
 E:\Loogn\ConsoleTest\bin\Debug\log4net.xml
 E:\loogn\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\github\loogn\ConsoleTest\bin\Debug\ConsoleTest.exe.config
+E:\github\loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.exe
+E:\github\loogn\ConsoleTest\obj\x86\Debug\ConsoleTest.pdb
+E:\github\loogn\ConsoleTest\bin\Debug\ConsoleTest.exe
+E:\github\loogn\ConsoleTest\bin\Debug\ConsoleTest.pdb
+E:\github\loogn\ConsoleTest\bin\Debug\log4net.dll
+E:\github\loogn\ConsoleTest\bin\Debug\Loogn.Common.dll
+E:\github\loogn\ConsoleTest\bin\Debug\MongoDB.Bson.dll
+E:\github\loogn\ConsoleTest\bin\Debug\MongoDB.Driver.dll
+E:\github\loogn\ConsoleTest\bin\Debug\log4net.xml
+E:\github\loogn\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache

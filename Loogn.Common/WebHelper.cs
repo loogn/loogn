@@ -136,5 +136,18 @@ namespace Loogn.Common
         }
 
         #endregion
+
+        /// <summary>
+        /// 获取远程客户端的 IP 主机地址。
+        /// </summary>
+        /// <returns></returns>
+        public static string GetUserHostAddress()
+        {
+            if (HttpContext.Current != null && HttpContext.Current.Request != null)
+            {
+                return HttpContext.Current.Request.UserHostAddress ?? string.Empty;
+            }
+            return string.Empty;
+        }
     }
 }
