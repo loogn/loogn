@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnType.cs" />
+    <Compile Include="InsertIgnoreAttribute.cs" />
     <Compile Include="PageResult.cs" />
     <Compile Include="DBServer.cs" />
     <Compile Include="OdbcServer.cs" />

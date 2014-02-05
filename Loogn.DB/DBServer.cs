@@ -522,6 +522,7 @@ namespace Loogn.DB
                 var x = new System.Dynamic.ExpandoObject();
                 var values =
                     from property in instance.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    where property.GetCustomAttributes(typeof(InsertIgnoreAttribute), true).Length == 0
                     select new
                     {
                         Name = property.Name,
