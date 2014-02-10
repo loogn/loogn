@@ -689,6 +689,7 @@ namespace Loogn.DB
                     sb.AppendFormat(" where {0}", condition);
                 }
                 result.TotalCount = (int)ExecuteScalar(sb.ToString(), CommandType.Text, null, parameters);
+                
                 if (result.TotalCount == 0) //总数为0了，肯定没有数据
                 {
                     return result;
@@ -702,7 +703,7 @@ namespace Loogn.DB
                 sb.AppendFormat(" where {0}", condition);
             }
             sb.AppendFormat(")t where t.rowid>{0}", (pageIndex - 1) * pageSize);
-            result.Rows = ExecuteModels(sb.ToString(), CommandType.Text, parameters);
+            result.Rows = ExecuteModels(sb.ToString(), CommandType.Text, CopyParameters(parameters));
             return result;
         }
         public virtual PageResult<T> SelectPage<T>(string tables, string fields, string condition, string orderby, int pageIndex, int pageSize, bool isTotalCount, params DbParameter[] parameters)
@@ -742,7 +743,7 @@ namespace Loogn.DB
                 sb.AppendFormat(" where {0}", condition);
             }
             sb.AppendFormat(")t where t.rowid>{0}", (pageIndex - 1) * pageSize);
-            result.Rows = ExecuteModels<T>(sb.ToString(), CommandType.Text, parameters);
+            result.Rows = ExecuteModels<T>(sb.ToString(), CommandType.Text, CopyParameters(parameters));
             return result;
         }
 

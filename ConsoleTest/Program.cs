@@ -1,43 +1,26 @@
 ﻿using System.Collections.Generic;
 
 using System.Xml;
+using Loogn.DB;
+using System;
 namespace ConsoleTest
 {
-    public class Edge
-    {
-        public int ID { get; set; }
-        public int Length { get; set; }
-    }
-
-    public class P
-    { 
-    
-    }
-    public class SP : P
-    { }
-
+  
     public class Program
     {
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
         //jjoobb2008
 
-        public static Dictionary<string, string> GetDictFromXml(string xml)
-        {
-            
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml);
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
-            {
-                dict.Add(node.Name, node.InnerText.Trim());
-            }
-            return dict;
-        }
-
+        
 
         static void Main(string[] args)
         {
-          
+            using (var db = DBServer.GetSqlServer())
+            {
+                var r = db.SelectPage("SettlementRecord", "*", "AmbassadorID=@ambid", "Time desc", 1, 10, true,
+                     db.CreateParameter("@ambid", 1));
+                Console.WriteLine(r.TotalCount);
+            }
 
             return;
 

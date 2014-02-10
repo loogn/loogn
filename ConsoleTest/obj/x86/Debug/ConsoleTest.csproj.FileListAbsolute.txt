@@ -31,3 +31,5 @@ E:\github\loogn\ConsoleTest\bin\Debug\MongoDB.Bson.dll
 E:\github\loogn\ConsoleTest\bin\Debug\MongoDB.Driver.dll
 E:\github\loogn\ConsoleTest\bin\Debug\log4net.xml
 E:\github\loogn\ConsoleTest\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\github\loogn\ConsoleTest\bin\Debug\Loogn.DB.dll
+E:\github\loogn\ConsoleTest\bin\Debug\Loogn.DB.pdb
