@@ -17,3 +17,4 @@ E:\github\loogn\Loogn.Common\bin\Debug\Loogn.Common.pdb
 E:\github\loogn\Loogn.Common\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\github\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.dll
 E:\github\loogn\Loogn.Common\obj\x86\Debug\Loogn.Common.pdb
+E:\github\loogn\Loogn.Common\bin\Debug\Loogn.Common.XML
