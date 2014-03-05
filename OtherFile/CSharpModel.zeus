@@ -18,14 +18,14 @@ public class GeneratedGui : DotNetScriptGui
 	public override void Setup()
 	{
 		//Config 
-		string SavePath=@"D:\QQPCmgr\桌面\";
-		string defaultDB="BSNS";
-		string NameSpace="BSNS";
+		string SavePath=string.Empty;
+		if(input.Contains("defaultOutputPath")){
+			SavePath=input["defaultOutputPath"].ToString();
+		}
+		
 		string ConnName="";
-		
-		
-		
-		ui.Width=300;
+		ui.Title="Loogn Model Generator";
+		ui.Width=400;
 		ui.Height=700;
 		//选择路径
 		ui.AddLabel("lblPath","选择路径","");
@@ -35,7 +35,7 @@ public class GeneratedGui : DotNetScriptGui
 		
 		//命名空间
 		ui.AddLabel("lblNamespace","命名空间:","");
-		ui.AddTextBox("tbNamespace",NameSpace,"");
+		ui.AddTextBox("tbNamespace","Your.Namespace","");
 		
 		
 		//选择数据库
@@ -46,20 +46,21 @@ public class GeneratedGui : DotNetScriptGui
 		{
 			cmbDatabases.BindData(MyMeta.Databases);
 		}
-		
+		//表名前缀
+		ui.AddLabel("lblPre","表名前缀","");
+		ui.AddTextBox("tbPre","","");
 		
 		//选择表
 		ui.AddLabel("lblTables","选择表","");
 		GuiListBox lstTables=ui.AddListBox("lstTables","");
-		lstTables.Height=300;
+		lstTables.Height=250;
 		
 		//默认数据库
-		if(IsConnected() && defaultDB!="")
+		if(IsConnected() && MyMeta.DefaultDatabase!=null)
 		{
-			cmbDatabases.SelectedValue=defaultDB;
+			cmbDatabases.SelectedValue=MyMeta.DefaultDatabase.Name;
 			lstTables.BindData(MyMeta.Databases[cmbDatabases.SelectedValue].Tables);
 		}
-		
 		
 		
 		ui.AddLabel("lblConnName","Web.config链接字符串名:","");
@@ -98,13 +99,16 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	//---------------------------------------------------
 	// Render() is where you want to write your logic     Encoding: gb2312
 	//---------------------------------------------------
-	private string tbPre="BSNS_";
+	private string tbPre;
+	private string ns;
+	private string path;
 	
 	public override void Render()
 	{
 		//命名空间
-		
-		string ns =input["tbNamespace"].ToString();
+		ns =input["tbNamespace"].ToString();
+		path=input["tbPath"].ToString();
+		tbPre=input["tbPre"].ToString();
 		if(string.IsNullOrEmpty(ns))
 		{
 			output.writeln("Namespace is required!");
@@ -113,7 +117,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}
 		GuiComboBox databases=ui["cmbDatabases"] as GuiComboBox;
 		GuiListBox lstTables=ui["lstTables"] as GuiListBox;
-		string path=input["tbPath"].ToString();
+		
 		GuiCheckBox cbModel= ui["cbModel"] as GuiCheckBox;
 		GuiCheckBox cbDAL=ui["cbDAL"] as GuiCheckBox;
 		foreach(string key in lstTables.SelectedItems)
@@ -142,18 +146,16 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	{
 			string modelName=table.Alias.Replace(tbPre,"");
 			
-			string path=input["tbPath"].ToString();
-			
 			output.writeln("using System;");
 			output.writeln(String.Empty);
 			//namespace begin
-			output.writeln("namespace "+input["tbNamespace"].ToString()+".Model");
+			output.writeln("namespace "+ns);
 			output.writeln("{");
 			output.tabLevel++;
 			output.autoTabLn("/// <summary>");
 			output.autoTabLn("/// "+table.Description);
 			output.autoTabLn("/// </summary>");
-			output.autoTabLn("public class "+modelName+"Model");
+			output.autoTabLn("public class "+modelName+"Info");
 			output.autoTabLn("{");
 			output.tabLevel++;
 			
@@ -186,7 +188,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 			output.tabLevel--;
 			output.writeln("}");//namespace end
 			
-			string filePath=path+"/"+input["tbNamespace"].ToString()+"/Model/"+modelName+"Model.cs";
+			string filePath=path+"/"+ns+"/Model/"+modelName+"Info.cs";
 			output.save(filePath,null);
 			output.clear();
 	}//CreateModel end

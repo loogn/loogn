@@ -301,9 +301,8 @@ namespace Loogn.Common
         #endregion
 
 
-        public static void WriteCheckCode(HttpContext context, string sessionName = "CheckCode", int length = 4)
+        public static void WriteCheckCode(HttpContext context,string chkCode)
         {
-            string chkCode = StringHelper.GetRandomCode(length);
             //颜色列表，用于验证码、噪线、噪点
             Color[] color = { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Brown, Color.DarkBlue, Color.Teal };
 
@@ -312,8 +311,6 @@ namespace Loogn.Common
 
             //验证码的字符集
 
-            //保存验证码的Session
-            context.Session[sessionName] = chkCode.ToLower();
             using (Bitmap bmp = new Bitmap(60, 20))
             {
                 Graphics g = Graphics.FromImage(bmp);
