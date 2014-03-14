@@ -3,6 +3,7 @@
 using System.Xml;
 using Loogn.DB;
 using System;
+using Loogn.Common;
 namespace ConsoleTest
 {
   
@@ -11,17 +12,20 @@ namespace ConsoleTest
         static string mgConn = "server=192.168.18.187:27017;database=papillon;username=pp;password=pp;connect=direct;maxPoolSize=200;connectTimeout=1m;";
         //jjoobb2008
 
-        
 
+        static void test(string plain)
+        {
+            var key = "whosydd!";
+
+            Console.WriteLine(plain);
+            var str = StringHelper.DESEncrypt(plain, key);
+            Console.WriteLine(str);
+            Console.WriteLine(StringHelper.DESDecrypt(str, key));
+
+        }
         static void Main(string[] args)
         {
-            using (var db = DBServer.GetSqlServer())
-            {
-                var r = db.SelectPage("SettlementRecord", "*", "AmbassadorID=@ambid", "Time desc", 1, 10, true,
-                     db.CreateParameter("@ambid", 1));
-                Console.WriteLine(r.TotalCount);
-            }
-
+            test("23");
             return;
 
             #region Mongo ReplicaSet

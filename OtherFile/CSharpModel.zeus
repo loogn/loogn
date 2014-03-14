@@ -66,9 +66,10 @@ public class GeneratedGui : DotNetScriptGui
 		ui.AddLabel("lblConnName","Web.config链接字符串名:","");
 		ui.AddTextBox("tbConnName",ConnName,"");
 		ui.AddCheckBox("cbModel","生成模型层",true,"");
-		ui.AddCheckBox("cbDAL","生成数据访问层",true,"");
+		ui.AddCheckBox("cbDAL","输出reader填充",true,"");
 		cmbDatabases.AttachEvent("onchange","cmbDatabases_onchange");
 		ui.ShowGui=true;
+		
 	}
 	public void cmbDatabases_onchange(GuiComboBox control)
 	{
@@ -131,7 +132,8 @@ public class GeneratedTemplate : DotNetScriptTemplate
 			if(cbDAL.Checked)
 			{
 				//生成数据访问层
-				CreateDAL(table);
+				//CreateDAL(table);
+				CreateBuilderInfo(table);
 			}
 		}
 		output.writeln("Generate Success!");
@@ -144,7 +146,11 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	//----------------------
 	public void CreateModel(ITable table)
 	{
-			string modelName=table.Alias.Replace(tbPre,"");
+			string modelName=table.Alias;
+			if(tbPre.Length>0)
+			{
+				modelName=table.Alias.Replace(tbPre,"");
+			}
 			
 			output.writeln("using System;");
 			output.writeln(String.Empty);
@@ -192,6 +198,51 @@ public class GeneratedTemplate : DotNetScriptTemplate
 			output.save(filePath,null);
 			output.clear();
 	}//CreateModel end
+	
+	public void CreateBuilderInfo(ITable table)
+	{
+		string modelName=table.Alias;
+		if(tbPre.Length>0)
+		{
+			modelName=table.Alias.Replace(tbPre,"");
+		}
+		%>
+		protected  override <%=modelName%>Info FillModelFromReader(System.Data.Common.DbDataReader reader, params string[] fields)
+		{
+			<%=modelName%>Info info = new <%=modelName%>Info();
+		<%
+            foreach(IColumn col in table.Columns)
+			{
+				if( col.IsNullable){
+					if(col.LanguageType=="string"){
+						%>
+			if (UtilDAL.HasFields("<%=col.Alias%>", fields) && !(reader["<%=col.Alias%>"] is DBNull)) info.<%=col.Alias%> = reader["<%=col.Alias%>"].ToString();	
+						<%
+					}else{
+						%>
+			if (UtilDAL.HasFields("<%=col.Alias%>", fields) && !(reader["<%=col.Alias%>"] is DBNull)) info.<%=col.Alias%> = (<%=col.LanguageType%>)reader["<%=col.Alias%>"];
+						<%
+					}		
+				}else{
+					if(col.LanguageType=="string"){
+					%>
+			if (UtilDAL.HasFields("<%=col.Alias%>", fields)) info.<%=col.Alias%> = reader["<%=col.Alias%>"].ToString();	
+					<%
+					}else{
+					%>
+			if (UtilDAL.HasFields("<%=col.Alias%>", fields)) info.<%=col.Alias%> = (<%=col.LanguageType%>)reader["<%=col.Alias%>"];
+					<%
+					}
+				}
+			}			
+			%>
+			return info;
+        }
+		
+		
+		
+		<%
+	}
 	
 	//----------------------
 	// 生成数据库访问层方法

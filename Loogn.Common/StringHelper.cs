@@ -651,5 +651,24 @@ namespace Loogn.Common
             return parts.Select<string, T>(parser);
         }
         #endregion
+
+
+        /// <summary>
+        /// 得到时间路径 parentPath\yyyy\MM\dd.txt
+        /// </summary>
+        /// <param name="parentPath"></param>
+        /// <returns></returns>
+        public static string GetLogFilePath(string parentPath)
+        {
+            var now = DateTime.Now;
+            var path = System.IO.Path.Combine(parentPath, now.Year.ToString(), now.Month.ToString());
+            var file = now.Day.ToString() + ".txt";
+
+            if (!System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+            return path + "\\" + file;
+        }
     }
 }
