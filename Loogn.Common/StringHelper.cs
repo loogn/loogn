@@ -83,7 +83,7 @@ namespace Loogn.Common
             }
             ret.ToString();
             return ret.ToString();
-        }  
+        }
         /// <summary>   
         /// 利用DES解密算法解密密文（可解密）   
         /// </summary>   
@@ -669,6 +669,59 @@ namespace Loogn.Common
                 System.IO.Directory.CreateDirectory(path);
             }
             return path + "\\" + file;
+        }
+
+        /// <summary>
+        /// 距今时间
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string GetElapsedTime(DateTime dt)
+        {
+            TimeSpan sp = DateTime.Now - dt;
+            if (sp.TotalHours <= 1)
+            {
+                if (sp.TotalMinutes <= 1)
+                {
+                    return "1分钟内";
+                }
+                else
+                {
+                    return (int)Math.Ceiling(sp.TotalMinutes) + "分钟内";
+                }
+            }
+            else if (sp.TotalDays <= 2)
+            {
+                return (int)Math.Ceiling(sp.TotalHours) + "小时内";
+            }
+            else if (sp.TotalDays < 3)
+            {
+                return "三天内";
+            }
+            else if (sp.TotalDays < 4)
+            {
+                return "四天内";
+            }
+            else if (sp.TotalDays < 5)
+            {
+                return "五天内";
+            }
+            else if (sp.TotalDays < 6)
+            {
+                return "六天内";
+            }
+            else if (sp.TotalDays < 7)
+            {
+                return "一周内";
+            }
+            if (dt.Year == DateTime.Now.Year)
+            {
+                return dt.ToString("MM-dd HH:mm");
+            }
+            else
+            {
+                return dt.ToString("yyyy-MM-dd HH:mm");
+            }
         }
     }
 }
