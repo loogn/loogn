@@ -18,3 +18,6 @@ E:\github\loogn\Loogn.DB\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\github\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.dll
 E:\github\loogn\Loogn.DB\obj\x86\Debug\Loogn.DB.pdb
 E:\github\loogn\Loogn.DB\bin\Debug\Loogn.DB.XML
+D:\jjoobb2008\Global Assembly\Loogn.DB.dll
+D:\jjoobb2008\Global Assembly\Loogn.DB.pdb
+D:\jjoobb2008\Global Assembly\Loogn.DB.XML
