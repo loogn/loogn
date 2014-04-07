@@ -35,7 +35,7 @@ public class GeneratedGui : DotNetScriptGui
 		
 		//命名空间
 		ui.AddLabel("lblNamespace","命名空间:","");
-		ui.AddTextBox("tbNamespace","Your.Namespace","");
+		ui.AddTextBox("tbNamespace","JJoobb.Model.Love","");
 		
 		
 		//选择数据库
