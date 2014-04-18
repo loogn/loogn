@@ -106,23 +106,26 @@ namespace Loogn.Common
             Image bitmap = new Bitmap(tWidth, tHeight);
             //新建一个画板
             Graphics g = Graphics.FromImage(bitmap);
+            g.CompositingQuality = CompositingQuality.AssumeLinear;
+
             //设置高质量插值法
-            g.InterpolationMode = InterpolationMode.High;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             //设置高质量,低速度呈现平滑程度
             g.SmoothingMode = SmoothingMode.HighQuality;
             //清空画布并以透明背景色填充
             g.Clear(Color.Transparent);
             //在指定位置并且按指定大小绘制原图片的指定部分
             g.DrawImage(img, new Rectangle(0, 0, tWidth, tHeight),
-                new Rectangle(0, 0, img.Width, img.Height),
+                new Rectangle(1, 1, img.Width - 1, img.Height - 1),
                 GraphicsUnit.Pixel);
             return bitmap;
         }
 
+        
         /// <summary>
         /// 剪切图
         /// </summary>
-        /// <param name="oldImage"></param>
+        /// <param name="img"></param>
         /// <param name="width">剪切宽度</param>
         /// <param name="height">剪切高度</param>
         /// <param name="offsetX">右偏移</param>
