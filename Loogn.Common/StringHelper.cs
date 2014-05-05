@@ -619,18 +619,39 @@ namespace Loogn.Common
 
         #endregion //得到汉字首字母
 
+        /// <summary>
+        /// 得到随机字符字符串
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public static string GetRandomCode(int count = 4)
         {
-            char[] character = { '1', '2', '3', '4', '5', '6', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+            char[] charset = { '1', '2', '3', '4', '5', '6', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+            return GetRandom(count, charset);
+        }
+
+        /// <summary>
+        /// 得到随机数字字符串
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static string GetRandomNumber(int count = 4)
+        {
+            return GetRandom(count, new char[] { '1', '2', '3', '4', '5', '6', '8', '9', '0' });
+        }
+
+        static string GetRandom(int count, char[] charset)
+        {
             Random rnd = new Random();
             //生成验证码字符串
             char[] codes = new char[count];
             for (int i = 0; i < count; i++)
             {
-                codes[i] = character[rnd.Next(character.Length)];
+                codes[i] = charset[rnd.Next(charset.Length)];
             }
             return new string(codes);
         }
+
 
         #region 分隔字符串
         public static string[] Split(string items, params char[] separator)

@@ -65,6 +65,7 @@
     <Compile Include="DayOfWeek.cs" />
     <Compile Include="HTMLBuilder.cs" />
     <Compile Include="ImageHelper.cs" />
+    <Compile Include="MIMETypes.cs" />
     <Compile Include="ObjId.cs" />
     <Compile Include="PageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,7 +77,6 @@
     </Compile>
     <Compile Include="WebHelper.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
