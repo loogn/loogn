@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AjaxHandler.cs" />
-    <Compile Include="Aspect\AspectAdvice.cs" />
+    <Compile Include="Aspect\AspectAdviceBase.cs" />
     <Compile Include="Aspect\AspectInvoker.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="DynamicMethodVisitor.cs" />
